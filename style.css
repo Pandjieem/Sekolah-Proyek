@@ -2,14 +2,15 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1e2a5e;
-    color: white;
+    background: rgb(34, 139, 34); /* Warna hijau yang lebih tenang */
+    background: linear-gradient(180deg, rgba(34, 139, 34, 1) 0%, rgba(50, 205, 50, 1) 50%, rgba(144, 238, 144, 1) 100%);
+    color: #ffffff;
 }
 
 .sidebar {
     width: 250px;
     height: 100vh;
-    background: linear-gradient(to bottom, lightblue, white);
+    background-color: rgba(12, 83, 42, 0.95); /* Hijau medium dengan transparansi */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -19,12 +20,13 @@ body {
 .sidebar-link {
     font-weight: 600;
     text-decoration: none;
+    color: #d4f8d4; /* Hijau muda yang kontras */
     transition: background 0.3s, color 0.3s;
 }
 
 .sidebar-link:hover {
     background-color: rgba(255, 255, 255, 0.2);
-    color: #ffc107;
+    color: #b6ff99; /* Warna hijau lebih cerah */
 }
 
 .cover-section {
@@ -36,6 +38,12 @@ body {
     position: relative;
 }
 
+.cover-section .btn{
+    background-color: #00ff00;
+    color: green;
+    font-weight: 600;
+}
+
 .cover-section::before {
     content: '';
     position: absolute;
@@ -43,15 +51,18 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(30, 42, 94, 0.8);
+    background: rgba(15, 102, 15, 0.6); /* Warna hijau transparan */
     z-index: 1;
 }
 
 .cover-section .container {
     z-index: 2;
+    color: #f0fff0; /* Hijau yang sangat muda untuk kontras */
 }
 
 footer {
-    background-color: #14203a;
-    margin-top: auto;
+    background-color: #2e8b57; /* Hijau medium untuk harmoni dengan sidebar */
+    color: #d4f8d4; /* Hijau muda untuk teks */
+    padding: 10px;
+    text-align: center;
 }
