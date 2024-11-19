@@ -345,7 +345,7 @@ img {
   z-index: 999;
   top: 0;
   left: 0;
-  background-color: #111;
+  background: rgb(12, 87, 59);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -355,9 +355,10 @@ img {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: whitesmoke;
   display: block;
   transition: 0.3s;
+  font-weight: 100;
 }
 
 .sidenav a:hover {
@@ -378,6 +379,14 @@ img {
 
 @media screen and (max-width: 390px) {
  .sidenav{
-  
+  align-items: none;
+  display: none;
+ }
+
+ .sidebar{
+  align-items: none;
+  display: none;
+ }
+
  }
 }
