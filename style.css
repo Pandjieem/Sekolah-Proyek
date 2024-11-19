@@ -2,9 +2,13 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: rgb(34, 139, 34); /* Warna hijau yang lebih tenang */
-    background: linear-gradient(180deg, rgba(34, 139, 34, 1) 0%, rgba(50, 205, 50, 1) 50%, rgba(144, 238, 144, 1) 100%);
+    background: rgb(21,137,93);
+    background: linear-gradient(0deg, rgba(21,137,93,1) 0%, rgba(15,199,116,1) 66%, rgba(94,241,111,1) 100%);
     color: #ffffff;
+}
+
+.profile-sekolah{
+    padding: 30px;
 }
 
 .sidebar {
@@ -65,4 +69,12 @@ footer {
     color: #d4f8d4; /* Hijau muda untuk teks */
     padding: 10px;
     text-align: center;
+}
+
+.galeri h2{
+    color: black;
+}
+
+#Kegiatan-img{
+    max-width: 539px;
 }
