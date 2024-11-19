@@ -50,6 +50,7 @@ img {
   place-items: center;
   margin-inline: 1.5rem;
   padding-block: 5rem;
+  margin-left:-5px ;
 }
 
 .card-content-container {
@@ -389,4 +390,4 @@ img {
  }
 
  }
-}
+
