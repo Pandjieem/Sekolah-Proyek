@@ -10,29 +10,31 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <div id="main">
+    <!-- Tombol Sidebar -->
+    <span id="openBtn" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
     <!-- Loading Animation -->
     <div id="loading" class="loading">
         <div class="loading-bar"></div>
     </div>
 
-    <div class="d-flex">
-        <nav id="sidebar" class="sidebar d-flex flex-column bg-gradient">
-            <button id="sidebarToggle" class="btn btn-light d-lg-none">
-                <i class="fas fa-bars"></i>
-            </button>
-            <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
-            <a href="#profile-sekolah" class="sidebar-link  py-3 px-4">Profil Sekolah</a>
-            <a href="#siswa" class="sidebar-link  py-3 px-4">Siswa</a>
-            <a href="#galeri" class="sidebar-link  py-3 px-4">Galeri Kegiatan</a>
-        </nav>
+    <div class="d-flex" >
+        <!-- Sidebar -->
+        <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#" class="sidebar-link text-white py-3 px-4">Beranda</a>
+                <a href="#profile-sekolah" class="sidebar-link text-white py-3 px-4">Profil Sekolah</a>
+                <a href="#siswa" class="sidebar-link text-white py-3 px-4">Siswa</a>
+                <a href="#galeri" class="sidebar-link text-white py-3 px-4">Galeri Kegiatan</a>
+        </div>
 
         <!-- Content Area -->
         <div class="content flex-grow-1">
-            <div class="cover-section text-center ">
+            <div class="cover-section text-center text-white">
                 <div class="container">
                     <h1 class="display-4 font-weight-bold">YPS Miftahul Falah Diski</h1>
                     <p class="lead">Menjadi pusat pendidikan Anak Cerdas & Soleh</p>
-                    <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">TENTANG KAMI</a>
+                    <a href="#profile-sekolah" class="btn btn-warning btn-lg font-weight-bold">TENTANG KAMI</a>
                 </div>
             </div>
 
@@ -51,22 +53,46 @@
                 </div>
             </section>
 
-            <section id="galery-kegiatan" class="galery py-5">
+            <!-- Galeri Kegiatan Section -->
+            <section id="galeri" class="galeri py-5 bg-light">
                 <div class="container">
-                    <h2 class="text-center mb-4">Galery Kegiatan</h2>
-                        
+                    <h2 class="text-center mb-4">Galeri Kegiatan</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <img src="gambar1.jpg" class="img-fluid rounded shadow" alt="Galeri 1">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img src="gambar2.jpg" class="img-fluid rounded shadow" alt="Galeri 2">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img src="gambar3.jpg" class="img-fluid rounded shadow" alt="Galeri 3">
+                        </div>
+                    </div>
                 </div>
             </section>
-            
-            
+
             <!-- Footer -->
-            <footer class="text-center  py-4 bg-dark">
+            <footer class="text-center text-white py-4 bg-dark">
                 <p>&copy; 2024 YPS Miftahul Falah Diski. All rights reserved.</p>
             </footer>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js">
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+            document.getElementById("openBtn").style.visibility = "hidden";
+        }
+        
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+            document.body.style.backgroundColor = "white";
+            
+        }
+    </script>
 </body>
 </html>
