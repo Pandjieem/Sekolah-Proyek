@@ -15,7 +15,7 @@ function closeNav() {
   // Menutup sidebar
   document.getElementById("mySidenav").style.width = "0";
   // Menghapus margin pada konten
-  document.getElementById("main").style.marginLeft= "0";
+  document.getElementById("main").style.marginLeft = "0";
   // Mengembalikan warna latar belakang ke normal
   document.body.style.backgroundColor = "white";
   // Mengubah ikon tombol kembali ke menu (hamburger)

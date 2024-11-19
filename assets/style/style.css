@@ -12,8 +12,6 @@
 
   /*========== Font and typography ==========*/
   --body-font: "Poppins", sans-serif;
-  --h2-font-size: 1.25rem;
-  --small-font-size: .813rem;
 }
 
 /*========== Responsive typography ==========*/
@@ -46,10 +44,12 @@ img {
 
 /*=============== CARD SECTION (Updated) ===============*/
 .card-container {
+  transform: translate(0px, -250px);
   display: grid;
   place-items: center;
   margin-inline: 1.5rem;
   padding-block: 5rem;
+  transform: translate(0px, -100px);
 }
 
 .card-content-container {
@@ -63,12 +63,12 @@ img {
 }
 
 .card-img {
-  width: 338px;
+  width: 320px;
   border-radius: 1.5rem;
 }
 
 .card-description-container {
-  width: 280px;
+  width: 300px;
   background-color: var(--container-color);
   padding: 1.5rem 2rem;
   box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
@@ -130,6 +130,7 @@ img {
   50% {
     transform: translateY(-10rem);
   }
+
   100% {
     transform: translateY(-7rem);
   }
@@ -145,9 +146,11 @@ img {
   0% {
     transform: translateY(-7rem);
   }
+
   50% {
     transform: translateY(-10rem);
   }
+
   100% {
     transform: translateY(.5rem);
   }
@@ -158,6 +161,7 @@ img {
     overflow: initial;
     pointer-events: none;
   }
+
   50% {
     overflow: hidden;
   }
@@ -175,7 +179,6 @@ img {
     padding: 1rem;
   }
 
-
 }
 
 /* For medium devices */
@@ -185,7 +188,7 @@ img {
     column-gap: 1.5rem;
   }
 
-  .sidenav{
+  .sidenav {
     width: 100%;
   }
 }
@@ -193,45 +196,29 @@ img {
 /* For large devices */
 @media screen and (min-width: 1120px) {
   .card-container {
+    margin-left: 2%;
     height: 100vh;
   }
 
   .card-content-container {
     grid-template-columns: repeat(3, 1fr);
+    margin-right: 20px;
   }
+
   .card-img {
-    width: 348px;
+    width: 425px;
+    max-height: 500px;
   }
+
   .card-description-container {
-    width: 316px;
+    margin-left: 50px;
+    width: 385px;
     padding-inline: 2.5rem;
   }
 }
 
-/*=============== STYLE FOR SECOND CSS SECTION (Updated) ===============*/
-
-body {
-  background: rgb(21,137,93);
-  background: linear-gradient(0deg, rgba(21,137,93,1) 0%, rgba(15,199,116,1) 66%, rgba(94,241,111,1) 100%);
-  color: #ffffff;
-  overflow-x: hidden;
-}
-
 .profile-sekolah {
   padding: 30px;
-}
-
-
-.sidebar-link {
-  font-weight: 600;
-  text-decoration: none;
-  color: #d4f8d4;
-  transition: background 0.3s, color 0.3s;
-}
-
-.sidebar-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #b6ff99;
 }
 
 .cover-section {
@@ -276,72 +263,12 @@ footer {
   color: black;
 }
 
-#Kegiatan-img {
-  max-width: 539px;
-}
-
-#galery-kegiatan {
-  margin-left: 30px;
-}
-
-.custom-card {
-  border: none;
-  display: inline-block;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 7px;
-  width: 400px;
-}
-
-.card-img-top {
-  max-height: 400px;
-  max-width: 500px;
-}
-
-.date-badge {
-  top: 10px;
-  right: 10px;
-  background-color: #17a2b8;
-  color: white;
-  border-radius: 8px;
-  text-align: center;
-  padding: 4px 8px;
-  font-weight: bold;
-}
-
-.date-badge .date-day {
-  font-size: 1.5rem;
-  display: block;
-  line-height: 1.2;
-}
-
-.date-badge .date-month {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
-
-.card-author {
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-
-.card-text {
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 #openBtn {
   position: fixed;
   top: 20px;
   left: 20px;
-  z-index: 1000; /* Menjaga agar tombol tetap di atas konten lain */
+  z-index: 1000;
+  /* Menjaga agar tombol tetap di atas konten lain */
 }
 
 .sidenav {
@@ -383,19 +310,10 @@ img {
   transition: margin-left .5s;
 }
 
-.text-justify{
+.text-justify {
   text-align: justify;
 }
 
-@media screen and (max-width: 390px) {
-  .sidenav{
-    align-items: none;
-    display: none;
-  }
-
-  .sidebar{
-    align-items: none;
-    display: none;
-  }
+#galery-kegiatan, h2{
+  margin-bottom: 60px;
 }
-
