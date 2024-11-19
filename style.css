@@ -1,80 +1,340 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: rgb(21,137,93);
-    background: linear-gradient(0deg, rgba(21,137,93,1) 0%, rgba(15,199,116,1) 66%, rgba(94,241,111,1) 100%);
-    color: #ffffff;
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(82, 60%, 28%);
+  --title-color: hsl(0, 0%, 15%);
+  --text-color: hsl(0, 0%, 35%);
+  --body-color: hsl(0, 0%, 95%);
+  --container-color: hsl(0, 0%, 100%);
+
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
+  --h2-font-size: 1.25rem;
+  --small-font-size: .813rem;
 }
 
-.profile-sekolah{
-    padding: 30px;
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1120px) {
+  :root {
+    --h2-font-size: 1.5rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== CARD SECTION (Updated) ===============*/
+.card-container {
+  display: grid;
+  place-items: center;
+  margin-inline: 1.5rem;
+  padding-block: 5rem;
+}
+
+.card-content-container {
+  display: grid;
+  row-gap: 3.5rem;
+}
+
+.card-article {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 338px;
+  border-radius: 1.5rem;
+}
+
+.card-description-container {
+  width: 280px;
+  background-color: var(--container-color);
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 24px hsla(0, 0%, 0%, .15);
+  border-radius: 1rem;
+  position: absolute;
+  bottom: -9rem;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 1s 1s;
+}
+
+.card-description {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: .25rem;
+}
+
+.card-title {
+  font-size: var(--h2-font-size);
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: .75rem;
+}
+
+.card-button {
+  text-decoration: none;
+  font-size: var(--small-font-size);
+  font-weight: 500;
+  color: var(--first-color);
+}
+
+.card-button:hover {
+  text-decoration: underline;
+}
+
+/* Card hover animations */
+.card-article:hover .card-description-container {
+  animation: show-description 1s forwards;
+  opacity: 1;
+  transition: opacity .3s;
+}
+
+.card-article:hover {
+  animation: remove-overflow 2s forwards;
+}
+
+.card-article:not(:hover) {
+  animation: show-overflow 2s forwards;
+}
+
+.card-article:not(:hover) .card-description-container {
+  animation: remove-description 1s forwards;
+}
+
+/* Card animation */
+@keyframes show-description {
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(-7rem);
+  }
+}
+
+@keyframes remove-overflow {
+  to {
+    overflow: initial;
+  }
+}
+
+@keyframes remove-description {
+  0% {
+    transform: translateY(-7rem);
+  }
+  50% {
+    transform: translateY(-10rem);
+  }
+  100% {
+    transform: translateY(.5rem);
+  }
+}
+
+@keyframes show-overflow {
+  0% {
+    overflow: initial;
+    pointer-events: none;
+  }
+  50% {
+    overflow: hidden;
+  }
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .card-container {
+    margin-inline: 1rem;
+  }
+
+  .card-description-container {
+    width: 250px;
+    padding: 1rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 768px) {
+  .card-content-container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1120px) {
+  .card-container {
+    height: 100vh;
+  }
+
+  .card-content-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card-img {
+    width: 348px;
+  }
+  .card-description-container {
+    width: 316px;
+    padding-inline: 2.5rem;
+  }
+}
+
+/*=============== STYLE FOR SECOND CSS SECTION (Updated) ===============*/
+
+body {
+  background: rgb(21,137,93);
+  background: linear-gradient(0deg, rgba(21,137,93,1) 0%, rgba(15,199,116,1) 66%, rgba(94,241,111,1) 100%);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.profile-sekolah {
+  padding: 30px;
 }
 
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: rgba(12, 83, 42, 0.95); /* Hijau medium dengan transparansi */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 100vh;
+  background-color: rgba(12, 83, 42, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-link {
-    font-weight: 600;
-    text-decoration: none;
-    color: #d4f8d4; /* Hijau muda yang kontras */
-    transition: background 0.3s, color 0.3s;
+  font-weight: 600;
+  text-decoration: none;
+  color: #d4f8d4;
+  transition: background 0.3s, color 0.3s;
 }
 
 .sidebar-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #b6ff99; /* Warna hijau lebih cerah */
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #b6ff99;
 }
 
 .cover-section {
-    background: url('gambar.jpg') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  background: url('gambar.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.cover-section .btn{
-    background-color: #00ff00;
-    color: green;
-    font-weight: 600;
+.cover-section .btn {
+  background-color: #00ff00;
+  color: green;
+  font-weight: 600;
 }
 
 .cover-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(15, 102, 15, 0.6); /* Warna hijau transparan */
-    z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 102, 15, 0.6);
+  z-index: 1;
 }
 
 .cover-section .container {
-    z-index: 2;
-    color: #f0fff0; /* Hijau yang sangat muda untuk kontras */
+  z-index: 2;
+  color: #f0fff0;
 }
 
 footer {
-    background-color: #2e8b57; /* Hijau medium untuk harmoni dengan sidebar */
-    color: #d4f8d4; /* Hijau muda untuk teks */
-    padding: 10px;
-    text-align: center;
+  background-color: #2e8b57;
+  color: #d4f8d4;
+  padding: 10px;
+  text-align: center;
 }
 
-.galeri h2{
-    color: black;
+.galeri h2 {
+  color: black;
 }
 
-#Kegiatan-img{
-    max-width: 539px;
+#Kegiatan-img {
+  max-width: 539px;
+}
+
+#galery-kegiatan {
+  margin-left: 30px;
+}
+
+.custom-card {
+  border: none;
+  display: inline-block;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 7px;
+  width: 400px;
+}
+
+.card-img-top {
+  max-height: 400px;
+  max-width: 500px;
+}
+
+.date-badge {
+  top: 10px;
+  right: 10px;
+  background-color: #17a2b8;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 8px;
+  font-weight: bold;
+}
+
+.date-badge .date-day {
+  font-size: 1.5rem;
+  display: block;
+  line-height: 1.2;
+}
+
+.date-badge .date-month {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.card-author {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
