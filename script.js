@@ -24,7 +24,7 @@ function closeNav() {
   document.getElementById("openBtn").setAttribute("onclick", "openNav()");
 }
 
-// Initialize Swiper
+
 const cardContainer = document.querySelector('.card-content-container');
 const cards = document.querySelectorAll('.card-article');
 const prevBtn = document.getElementById('prevBtn');

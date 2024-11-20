@@ -174,20 +174,55 @@ body {
     margin-inline: 1rem;
     transform: translate(0px, -130px);
   }
-
   .card-description-container {
     width: 250px;
     padding: 1rem;
   }
+
+  .card-description-container{
+  }
 }
+
+.card-description-container {
+  width: 220px; /* Ukuran lebih kecil */
+  background-color: var(--container-color);
+  padding: 1rem 1.5rem; /* Padding disesuaikan */
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1); /* Bayangan lebih ringan */
+  border-radius: 0.75rem;
+  position: absolute;
+  bottom: -12rem; /* Posisi lebih dekat */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 0.8s 0.5s; /* Peralihan lebih cepat */
+}
+
+@media screen and (min-width: 768px) {
+  .card-description-container {
+    width: 300px; /* Lebih besar untuk layar menengah */
+    padding: 1.25rem 1.75rem;
+    bottom: -9rem;
+  }
+}
+
+@media screen and (min-width: 1190px) {
+  .card-description-container {
+    width: 320px; /* Ukuran sesuai layar besar */
+    left: 500px; /* Penyesuaian posisi */
+    bottom: 8;
+  }
+}
+
 
 /* For medium devices */
 @media screen and (min-width: 768px) {
   .card-content-container {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1.5rem;
-    
+    column-gap: 1.5rem;    
   }
+
+  
 
   .sidenav {
     width: 100%;
@@ -197,24 +232,7 @@ body {
   
 }
 
-/* For large devices */
-@media screen and (min-width: 1120px) {
-  .card-container {
-    margin-left: 2%;
-    height: 100vh;
-  }
 
-  .card-content-container {
-    grid-template-columns: repeat(3, 1fr);
-    margin-right: 20px;
-  }
-
-  .card-description-container {
-    margin-left: 50px;
-    width: 385px;
-    padding-inline: 2.5rem;
-  }
-}
 
 .text-center h2{
   position: relative;
@@ -292,6 +310,8 @@ footer {
   width: 400px;
 }
 
+/* hapus */
+
 .date-badge {
   top: 10px;
   right: 10px;
@@ -323,6 +343,8 @@ footer {
   margin-top: 10px;
   margin-bottom: 15px;
 }
+
+/* sini mgkn */
 
 #openBtn {
   position: fixed;
@@ -387,9 +409,7 @@ footer {
     width: 92%;    
   }
 
-  .card-container {
-    width: 100%;
-    max-width: 490px; /* Sesuaikan untuk layar lebar */
+  .card-article{
 
   }
 }
@@ -397,7 +417,7 @@ footer {
 .card-list .card-item .card-link{
   width: 400px;
   display: block;
-  background-color: #fff;
+  background-color: #e87878;
   padding: 18px;
   border-radius: 12px;
   text-decoration: none;
@@ -453,10 +473,9 @@ footer {
   position: relative;
 }
 
- /* gallery slide animation */
 .card-content-container {
   display: flex;
-  gap: -3rem;
+  gap: -4rem;
   transition: transform 1s ease-in-out;
   will-change: transform; /* Optimalisasi performa */
 }
@@ -486,7 +505,7 @@ footer {
 
 #prevBtn {
   left: -18px;
-  width: 60px;
+  width: 55px;
   text-align: center;
   position: relative;
   top: -90px;
@@ -495,7 +514,7 @@ footer {
 
 #nextBtn {
   right: 10px;
-  width: 60px;
+  width: 55px;
   text-align: center;
   position: relative;
   top: -90px;
@@ -519,7 +538,25 @@ footer {
       position: relative;
       left: 427px;
     }
+
+    #nextBtn {
+      right: 35px;
     
+    }
+
+    .card-container {
+      margin-left: 2%;
+      height: 100vh;
+    }
   
-    
+    .card-content-container {
+      grid-template-columns: repeat(3, 1fr);
+      margin-right: 20px;
+    }
+  
+    .card-description-container {
+      margin-left: 35px;
+      width: 385px;
+      padding-inline: 2.5rem;
+    }
  }
