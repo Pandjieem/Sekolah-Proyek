@@ -179,7 +179,6 @@ body {
     width: 250px;
     padding: 1rem;
   }
-
 }
 
 /* For medium devices */
@@ -387,6 +386,12 @@ footer {
     position: relative;
     width: 92%;    
   }
+
+  .card-container {
+    width: 100%;
+    max-width: 490px; /* Sesuaikan untuk layar lebar */
+
+  }
 }
 
 .card-list .card-item .card-link{
@@ -448,10 +453,11 @@ footer {
   position: relative;
 }
 
+ /* gallery slide animation */
 .card-content-container {
   display: flex;
-  gap: 1rem;
-  transition: transform 0.5s ease-in-out;
+  gap: -3rem;
+  transition: transform 1s ease-in-out;
   will-change: transform; /* Optimalisasi performa */
 }
 
