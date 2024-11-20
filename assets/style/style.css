@@ -38,11 +38,7 @@ body {
   transition: background-color .5s;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+
 
 /*=============== CARD SECTION (Updated) ===============*/
 .card-container {
@@ -51,6 +47,7 @@ img {
   margin-inline: 1.5rem;
   padding-block: 5rem;
   margin-left:-5px ;
+  
 }
 
 .card-content-container {
@@ -326,12 +323,6 @@ footer {
   margin-bottom: 15px;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 #openBtn {
   position: fixed;
   top: 20px;
@@ -390,7 +381,7 @@ img {
  }
 
  .card-container {
-  margin-left:-12px ;
+  
 }
 
  }
