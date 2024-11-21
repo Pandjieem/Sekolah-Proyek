@@ -6,6 +6,95 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
+
+// Koneksi ke database
+$conn = new mysqli("localhost", "root", "", "user_db");
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Tambah Gambar
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $instagram = $_POST['instagram'];
+    $image = $_FILES['image']['name'];
+    $target = "../assets/img/" . basename($image);
+
+    // Cek apakah folder img ada
+    if (!is_dir('../assets/img/')) {
+        echo "Folder gambar tidak ditemukan.";
+    } else {
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $sql = "INSERT INTO images (title, description, instagram, image_path) 
+                    VALUES ('$title', '$description', '$instagram', '$target')";
+            $conn->query($sql);
+        } else {
+            echo "Gagal mengunggah gambar.";
+        }
+    }
+}
+
+// Hapus Gambar
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "SELECT image_path FROM images WHERE id=$id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+
+    if (file_exists($row['image_path'])) {
+        unlink($row['image_path']);
+    }
+
+    $conn->query("DELETE FROM images WHERE id=$id");
+    header("Location: dashboard.php");
+}
+
+// Update Gambar
+if (isset($_POST['update_image']) && isset($_POST['image_id'])) {
+    $image_id = $_POST['image_id'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $instagram = $_POST['instagram'];
+
+    // Ambil path gambar lama
+    $sql = "SELECT image_path FROM images WHERE id=$image_id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $old_image = $row['image_path'];
+
+    // Jika ada gambar baru
+    if ($_FILES['image']['name']) {
+        // Hapus gambar lama dari server
+        if (file_exists($old_image)) {
+            unlink($old_image);
+        }
+
+        // Upload gambar baru
+        $image = $_FILES['image']['name'];
+        $target = "../assets/img/" . basename($image);  // Update path ke ../assets/img/
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            $image_path = $target;
+        } else {
+            echo "Gagal mengunggah gambar.";
+            exit();
+        }
+    } else {
+        // Jika tidak ada gambar baru, gunakan gambar lama
+        $image_path = $old_image;
+    }
+
+    // Update data gambar di database
+    $sql = "UPDATE images SET title='$title', description='$description', instagram='$instagram', image_path='$image_path' WHERE id=$image_id";
+    if ($conn->query($sql)) {
+        header("Location: dashboard.php");
+    } else {
+        echo "Gagal memperbarui gambar.";
+    }
+}
+
+// Ambil semua gambar
+$images = $conn->query("SELECT * FROM images");
 ?>
 
 <!DOCTYPE html>
@@ -19,226 +108,111 @@ if (!isset($_SESSION['user_id'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        .image-preview {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            margin-left: 20px;
-        }
-
-        .btn {
-            background-color: green;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="main">
-        <span id="openBtn" style="font-size:30px;cursor:pointer;color: rgb(0, 0, 0);" onclick="openNav()">&#9776;</span>
-
-        <!-- Loading Animation -->
-        <div id="loading" class="loading">
-            <div class="loading-bar"></div>
+<div id="main">
+    <div class="d-flex">
+        <div id="mySidenav" class="sidenav">
+            <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
+            <a href="#profile-sekolah" class="sidebar-link py-3 px-4">Modifikasi Foto Ke Galeri</a>
         </div>
 
-        <div class="d-flex">
-            <div id="mySidenav" class="sidenav">
-                <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
-                <a href="#profile-sekolah" class="sidebar-link  py-3 px-4">Modifikasi Foto Ke Galeri</a>
-                <a href="#siswa" class="sidebar-link  py-3 px-4">Ganti Foto Cover Website</a>
-                <a href="#galeri" class="sidebar-link  py-3 px-4"></a>
+        <!-- Content Area -->
+        <div class="content flex-grow-1">
+            <div class="cover-section">
+                <div class="container">
+                    <h1 class="display-4 font-weight-bold">Halaman Admin</h1>
+                    <p class="lead">Memodifikasi Halaman Utama</p>
+                </div>
             </div>
 
-            <!-- Content Area -->
-            <div class="content flex-grow-1">
-                <div class="cover-section">
-                    <div class="container">
-                        <h1 class="display-4 font-weight-bold">Halaman Admin</h1>
-                        <p class="lead">Memodifikasi Halaman Utama</p>
-                        <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">Modifikasi Foto</a>
+            <!-- Form Tambah Gambar -->
+            <section id="profile-sekolah" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-4">Tambahkan Gambar ke Galeri</h2>
+                    <form action="dashboard.php" method="POST" enctype="multipart/form-data" class="mb-4">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul Gambar</label>
+                            <input type="text" name="title" id="title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Deskripsi Gambar</label>
+                            <input type="text" name="description" id="description" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="instagram" class="form-label">Link Instagram</label>
+                            <input type="text" name="instagram" id="instagram" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Pilih Gambar</label>
+                            <input type="file" name="image" id="image" class="form-control" required>
+                        </div>
+                        <button type="submit" name="add_image" class="btn btn-success">Tambah Gambar</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Galeri Gambar -->
+            <section id="galeri" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-4">Galeri Gambar</h2>
+                    <div class="row">
+                        <?php while ($row = $images->fetch_assoc()): ?>
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="<?= $row['image_path'] ?>" class="card-img-top" alt="<?= $row['title'] ?>">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $row['title'] ?></h5>
+                                        <p class="card-text"><?= $row['description'] ?></p>
+                                        <a href="<?= $row['instagram'] ?>" target="_blank" class="btn btn-primary">Lihat Instagram</a>
+                                        <a href="dashboard.php?delete=<?= $row['id'] ?>" class="btn btn-danger"
+                                           onclick="return confirm('Hapus gambar ini?')">Hapus</a>
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal<?= $row['id'] ?>">Ganti Gambar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal untuk Mengubah Gambar -->
+                            <div class="modal fade" id="updateModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="updateModalLabel">Ganti Gambar</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="dashboard.php" method="POST" enctype="multipart/form-data">
+                                                <input type="hidden" name="image_id" value="<?= $row['id'] ?>">
+                                                <div class="mb-3">
+                                                    <label for="title" class="form-label">Judul Gambar</label>
+                                                    <input type="text" name="title" id="title" class="form-control" value="<?= $row['title'] ?>" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="description" class="form-label">Deskripsi Gambar</label>
+                                                    <input type="text" name="description" id="description" class="form-control" value="<?= $row['description'] ?>" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="instagram" class="form-label">Link Instagram</label>
+                                                    <input type="text" name="instagram" id="instagram" class="form-control" value="<?= $row['instagram'] ?>">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="image" class="form-label">Pilih Gambar Baru</label>
+                                                    <input type="file" name="image" id="image" class="form-control">
+                                                </div>
+                                                <button type="submit" name="update_image" class="btn btn-success">Update Gambar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
                     </div>
                 </div>
-                <!-- Profil Sekolah Section -->
-                <section id="profile-sekolah" class="profile-sekolah py-5">
-                    <div class="container">
-                        <h2 class="text-center mb-4">Tambahkan Gambar ke Halaman Utama</h2>
-                        <div class="row">
-                            <div class="text-justify">
-                                <div class="container mb-5">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-12">
-                                            <div class="card shadow-lg">
-                                                <div class="card-body p-4">
-                                                    <h5 class="card-title text-center mb-4">Tambahkan Gambar Pada Galery Foto</h5>
-                                                    <!-- Image Upload Form -->
-                                                    <form>
-                                                        <div class="mb-3">
-                                                            <label for="imageInput" class="form-label">Pilih Gambar</label>
-                                                            <input type="file" class="form-control" id="imageInput" accept="image/*" onchange="previewImage(event)">
-                                                        </div>
-                                                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                                                            <!-- Image Preview -->
-                                                            <img id="imagePreview" class="image-preview" src="" alt="Image Preview" style="display: none;">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class="form-label">Masukkan Judul Gambar</label>
-                                                            <input type="text" name="" id="" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class="form-label">Masukkan Deksripsi Gambar</label>
-                                                            <input type="text" name="" id="" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class="form-label">Masukkan Link Instagram</label>
-                                                            <input type="text" name="" id="" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <button class="form-control mt-2 btn btn-success">Tambahkan Foto</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="text-center mb-4 mt-5">Modifikasi Cover Foto</h2>
-                            <div class="row">
-                                <div class="text-justify">
-                                    <div class="container mb-5">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-12">
-                                                <div class="card shadow-lg">
-                                                    <div class="card-body p-4">
-                                                        <h5 class="card-title text-center mb-4">Ubah Cover Foto Background</h5>
-                                                        <!-- Image Upload Form -->
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="imageInput" class="form-label">Pilih Gambar</label>
-                                                                <input type="file" class="form-control" id="imageInput" accept="image/*" onchange="previewImage(event)">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <button class="form-control mt-2 btn btn-success">Ganti Cover Foto</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 class="text-center mb-4 mt-5">Ubah Foto di Galery</h2>
-                            <div class="row">
-                                <div class="text-justify">
-                                    <div class="container">
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-12">
-                                                <div class="card shadow-lg">
-                                                    <div class="card-body p-4">
-                                                        <!-- Slideshow container -->
-                                                        <div class="slideshow-container">
-
-                                                            <!-- Full-width images with number and caption text -->
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">1 / 3</div>
-                                                                <img src="gambar.jpg" style="width:100%">
-                                                                <div class="text">Caption Text</div>
-                                                            </div>
-
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">2 / 3</div>
-                                                                <img src="gambar.jpg" style="width:100%">
-                                                                <div class="text">Caption Two</div>
-                                                            </div>
-
-                                                            <div class="mySlides">
-                                                                <div class="numbertext">3 / 3</div>
-                                                                <img src="gambar.jpg" style="width:100%">
-                                                                <div class="text">Caption Three</div>
-                                                            </div>
-
-                                                            <!-- Next and previous buttons -->
-                                                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                                                        </div>
-                                                        <br>
-
-                                                        <!-- The dots/circles -->
-                                                        <div style="text-align:center">
-                                                            <span class="dot" onclick="currentSlide(1)"></span>
-                                                            <span class="dot" onclick="currentSlide(2)"></span>
-                                                            <span class="dot" onclick="currentSlide(3)"></span>
-                                                        </div>
-                                                        <!-- Image Upload Form -->
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="imageInput" class="form-label">Pilih Gambar</label>
-                                                                <input type="file" class="form-control" id="imageInput" accept="image/*" onchange="previewImage(event)">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <button class="form-control mt-2 btn btn-success">Ubah Foto</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </section>
-
-                <footer class="footer bg-black text-center text-md-start">
-                    <div class="container py-4">
-                        <div class="row">
-                            <!-- Section 1: Contact Info -->
-                            <div class="col-md-4 mb-3">
-                                <h5>Hubungi Kami</h5>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-phone"></i> +62 81266841237</li>
-                                    <li><i class="fas fa-envelope"></i> info@example.com</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Jl. Paya Bakung, Dusun VII Desa No.24, Kec. Sunggal, Kabupaten Deli Serdang, Sumatera Utara 20351</li>
-                                </ul>
-                            </div>
-                
-                            <!-- Section 2: Google Map -->
-                            <div class="col-md-4 mb-3">
-                                <h5>Lokasi Kami</h5>
-                                <div class="map-container">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15927.691931491338!2d98.5520034!3d3.6051062!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312941ba62814f%3A0x29a9edb53d498e25!2sYPS%20Miftahul%20Falah%20Diski!5e0!3m2!1sid!2sid!4v1732157735641!5m2!1sid!2sid"     width="100%" 
-                                        height="100%" 
-                                        style="border:0;" 
-                                        allowfullscreen="" 
-                                        loading="lazy">
-                                    </iframe>
-                                </div>
-                            </div>
-                
-                            <!-- Section 3: Social Media -->
-                            <div class="col-md-4 mb-3">
-                                <h5>Follow Us</h5>
-                                <div>
-                                    <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                                    <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <p class="mb-0">&copy; 2024 YPS Miftahul Falah Diski. All rights reserved.</p>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+            </section>
         </div>
-</body>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-
+</body>
 </html>

@@ -1,3 +1,13 @@
+<?php
+// Koneksi ke database
+$conn = new mysqli("localhost", "root", "", "user_db");
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+$images = $conn->query("SELECT * FROM images ORDER BY uploaded_at DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YPS Miftahul Falah Diski</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -23,9 +33,9 @@
         <div class="d-flex">
             <div id="mySidenav" class="sidenav">
                 <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
-                <a href="#profile-sekolah" class="sidebar-link  py-3 px-4">Profil Sekolah</a>
-                <a href="#galeri" class="sidebar-link  py-3 px-4">Galeri Kegiatan</a>
-                <a href="#organisasi" class="sidebar-link  py-3 px-4">Organisasi</a>
+                <a href="#profile-sekolah" class="sidebar-link py-3 px-4">Profil Sekolah</a>
+                <a href="#galeri" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
+                <a href="#organisasi" class="sidebar-link py-3 px-4">Organisasi</a>
             </div>
 
             <!-- Content Area -->
@@ -54,20 +64,21 @@
                             <div class="text-justify">
                                 <p class="lead fade-in">Misi Kami,</p>
                                 <ol class="lead">
-                                    <li>Membina kebersamaan antara guru, orang tua, masyarakat dan pemerintah untuk 
+                                    <li>Membina kebersamaan antara guru, orang tua, masyarakat dan pemerintah untuk
                                         memajukan pendidikan di madrasah</li>
-                                    <li>Melaksanakan proses pendidikan yang dinamis, kreatif dan inovatif berdasarkan 
+                                    <li>Melaksanakan proses pendidikan yang dinamis, kreatif dan inovatif berdasarkan
                                         syari’at islam dan perundang-undangan yang berlaku</li>
-                                    <li>Menanamkan budi pekerti, sopan santun, kemandirian dan kedisiplinan warga 
+                                    <li>Menanamkan budi pekerti, sopan santun, kemandirian dan kedisiplinan warga
                                         madrasah</li>
                                     <li>Menciptakan keteladan dalam berperilaku islami dikalangan warga madrasah</li>
                                     <li>Melaksanakan pelayanan administrasi pendidikan yang cepat, tepat dan transparan</li>
-                                </ol>            
+                                </ol>
                             </div>
                         </div>
                     </div>
                 </section>
 
+                <!-- Galeri Kegiatan Section -->
                 <section id="galery-kegiatan" class="galery py-5">
                     <h2 class="text-center-galery">Galeri Kegiatan</h2>
                     <div class="d-flex justify-content-center align-items-center position-relative">
@@ -76,53 +87,37 @@
                         </span>
                         <div class="card-container">
                             <div class="card-content-container d-flex">
-                              
-                                <article class="card-article">
-                                    <img src="/assets/img/kegiatan4.jpg" alt="image 1" class="card-img">
-                                    <div class="card-description-container">
-                                        <span class="card-description">Kegiatan Rapat Kerja Pembina</span>
-                                        <h2 class="card-title">Sumatera Utara 2024</h2>
-                                        <a href="#" class="card-button">Read More</a>
-                                    </div>
-                                </article>
-                
-                                <article class="card-article">
-                                    <img src="/assets/img/kegiatan2.jpg" alt="image 2" class="card-img">
-                                    <div class="card-description-container">
-                                        <span class="card-description">Kegiatan Keagamaan</span>
-                                        <h2 class="card-title">Sumatera Utara 2024</h2>
-                                        <a href="#" class="card-button">Read More</a>
-                                    </div>
-                                </article>
-                              
-                                <article class="card-article">
-                                    <img src="/assets/img/kegiatan3.jpg" alt="image 3" class="card-img">
-                                    <div class="card-description-container">
-                                        <span class="card-description">Kegiatan Kambera</span>
-                                        <h2 class="card-title">Sumareta Utara 2024</h2>
-                                        <a href="#" class="card-button">Read More</a>
-                                    </div>
-                                </article>
+                                <?php
+                                // Tentukan folder tempat menyimpan gambar
+                                $folder = "assets/img/";
 
-                            
-                                <article class="card-article">
-                                    <img src="/assets/img/kegiatan3.jpg" alt="image 3" class="card-img">
-                                    <div class="card-description-container">
-                                        <span class="card-description">Kegiatan Kambera</span>
-                                        <h2 class="card-title">Sumareta Utara 2024</h2>
-                                        <a href="#" class="card-button">Read More</a>
-                                    </div>
-                                </article>
+                                // Pastikan folder ada
+                                if (is_dir($folder)) {
+                                    // Membaca daftar file dalam folder
+                                    $files = scandir($folder);
 
-                                <article class="card-article">
-                                    <img src="/assets/img/kegiatan3.jpg" alt="image 3" class="card-img">
-                                    <div class="card-description-container">
-                                        <span class="card-description">Kegiatan Kambera</span>
-                                        <h2 class="card-title">Sumareta Utara 2024</h2>
-                                        <a href="#" class="card-button">Read More</a>
-                                    </div>
-                                </article>
-                                
+                                    // Filter hanya file gambar (misalnya .jpg, .jpeg, .png)
+                                    $imageFiles = array_filter($files, function ($file) use ($folder) {
+                                        return preg_match('/\.(jpg|jpeg|png|gif)$/i', $file) && is_file($folder . $file);
+                                    });
+
+                                    // Menampilkan gambar-gambar yang ditemukan di folder
+                                    foreach ($imageFiles as $imageFile):
+                                        $imagePath = $folder . $imageFile;
+                                ?>
+                                        <article class="card-article">
+                                            <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
+                                            <div class="card-description-container">
+                                                <span class="card-description"><?= htmlspecialchars($imageFile) ?></span>
+                                                <h2 class="card-title">Sumatera Utara 2024</h2>
+                                                <a href="#" class="card-button">Read More</a>
+                                            </div>
+                                        </article>
+                                <?php endforeach;
+                                } else {
+                                    echo "Folder gambar tidak ditemukan.";
+                                }
+                                ?>
                             </div>
                         </div>
                         <span id="nextBtn" class="arrow-btn">
@@ -131,6 +126,7 @@
                     </div>
                 </section>
 
+                <!-- Organisasi Section -->
                 <section id="organisasi" class="profile-sekolah py-5">
                     <div class="container">
                         <h2 class="text-center mb-4">Organisasi</h2>
@@ -141,12 +137,11 @@
                                     <li>Madrasah Ibtidaiyah (MI)</li>
                                     <li>Madrasah Tsanawiyah (MTs)</li>
                                     <li>Madrasah Aliyah (MA)</li>
-                                </ol>            
+                                </ol>
                             </div>
                         </div>
                     </div>
                 </section>
-
 
                 <!-- Footer -->
                 <footer class="footer bg-black text-center text-md-start">
@@ -161,20 +156,15 @@
                                     <li><i class="fas fa-map-marker-alt"></i>Jl. Paya Bakung, Dusun VII Desa No.24, Kec. Sunggal, Kabupaten Deli Serdang, Sumatera Utara 20351</li>
                                 </ul>
                             </div>
-                
+
                             <!-- Section 2: Google Map -->
                             <div class="col-md-4 mb-3">
                                 <h5>Lokasi Kami</h5>
                                 <div class="map-container">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15927.691931491338!2d98.5520034!3d3.6051062!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312941ba62814f%3A0x29a9edb53d498e25!2sYPS%20Miftahul%20Falah%20Diski!5e0!3m2!1sid!2sid!4v1732157735641!5m2!1sid!2sid"     width="100%" 
-                                        height="100%" 
-                                        style="border:0;" 
-                                        allowfullscreen="" 
-                                        loading="lazy">
-                                    </iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15927.691931491338!2d98.5520034!3d3.6051062!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312941ba62814f%3A0x29a9edb53d498e25!2sYPS%20Miftahul%20Falah%20Diski!5e0!3m2!1sid!2sid!4v1732157735641!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                 </div>
                             </div>
-                
+
                             <!-- Section 3: Social Media -->
                             <div class="col-md-4 mb-3">
                                 <h5>Follow Us</h5>
@@ -189,6 +179,7 @@
                         </div>
                     </div>
                 </footer>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
