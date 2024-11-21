@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 /* test font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
 /*=============== VARIABLES CSS ===============*/
 :root {
   /*========== Colors ==========*/
@@ -47,8 +48,8 @@ body {
   place-items: center;
   margin-inline: 1.5rem;
   padding-block: 5rem;
-  margin-left:-5px ;
-  
+  margin-left: -5px;
+
 }
 
 .card-content-container {
@@ -174,33 +175,39 @@ body {
     margin-inline: 1rem;
     transform: translate(0px, -130px);
   }
+
   .card-description-container {
     width: 250px;
     padding: 1rem;
   }
 
-  .card-description-container{
-  }
+  .card-description-container {}
 }
 
 .card-description-container {
-  width: 220px; /* Ukuran lebih kecil */
+  width: 220px;
+  /* Ukuran lebih kecil */
   background-color: var(--container-color);
-  padding: 1rem 1.5rem; /* Padding disesuaikan */
-  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1); /* Bayangan lebih ringan */
+  padding: 1rem 1.5rem;
+  /* Padding disesuaikan */
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1);
+  /* Bayangan lebih ringan */
   border-radius: 0.75rem;
   position: absolute;
-  bottom: -12rem; /* Posisi lebih dekat */
+  bottom: -12rem;
+  /* Posisi lebih dekat */
   left: 0;
   right: 0;
   margin-inline: auto;
   opacity: 0;
-  transition: opacity 0.8s 0.5s; /* Peralihan lebih cepat */
+  transition: opacity 0.8s 0.5s;
+  /* Peralihan lebih cepat */
 }
 
 @media screen and (min-width: 768px) {
   .card-description-container {
-    width: 300px; /* Lebih besar untuk layar menengah */
+    width: 300px;
+    /* Lebih besar untuk layar menengah */
     padding: 1.25rem 1.75rem;
     bottom: -9rem;
   }
@@ -208,8 +215,10 @@ body {
 
 @media screen and (min-width: 1190px) {
   .card-description-container {
-    width: 320px; /* Ukuran sesuai layar besar */
-    left: 500px; /* Penyesuaian posisi */
+    width: 320px;
+    /* Ukuran sesuai layar besar */
+    left: 500px;
+    /* Penyesuaian posisi */
     bottom: 8;
   }
 }
@@ -219,30 +228,30 @@ body {
 @media screen and (min-width: 768px) {
   .card-content-container {
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1.5rem;    
+    column-gap: 1.5rem;
   }
 
-  
+
 
   .sidenav {
     width: 100%;
   }
 
 
-  
+
 }
 
 
 
-.text-center h2{
+.text-center h2 {
   position: relative;
   top: 500px;
 }
 
-.text-center-galery{
- position: relative;
- top: -70px;
- text-align: center;
+.text-center-galery {
+  position: relative;
+  top: -70px;
+  text-align: center;
 }
 
 .profile-sekolah {
@@ -289,7 +298,7 @@ footer {
 
 .galeri h2 {
   color: black;
-  
+
 }
 
 #Kegiatan-img {
@@ -394,27 +403,25 @@ footer {
 }
 
 @media screen and (max-width: 390px) {
- .sidenav{
-  align-items: none;
-  display: none;
- }
+  .sidenav {
+    align-items: none;
+    display: none;
+  }
 
- .sidebar{
-  align-items: none;
-  display: none;
- }
+  .sidebar {
+    align-items: none;
+    display: none;
+  }
 
-  .card-img{
+  .card-img {
     position: relative;
-    width: 92%;    
+    width: 92%;
   }
 
-  .card-article{
-
-  }
+  .card-article {}
 }
 
-.card-list .card-item .card-link{
+.card-list .card-item .card-link {
   width: 400px;
   display: block;
   background-color: #e87878;
@@ -424,35 +431,35 @@ footer {
   box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-.card-list .card-item{
+.card-list .card-item {
   list-style: none;
 }
 
-.card-link .card-item .card-image{
-   width: 100%;
-   aspect-ratio: 16 / 9;
-   object-fit: cover;
-   border-radius: 10px;
+.card-link .card-item .card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.card-list .card-link .badge{
+.card-list .card-link .badge {
   color: #5372F0;
   padding: 8px 16px;
   font-size: 0.95rem;
   font-weight: 500;
   background: #DDE4FF;
   width: fit-content;
-  margin: 16px 0 18px ;
+  margin: 16px 0 18px;
   border-radius: 25px;
 }
 
-.card-list .card-link .card-title{
+.card-list .card-link .card-title {
   font-size: 1.19rem;
   color: #000;
   font-weight: 600;
 }
 
-.card-list .card-link .card-button{
+.card-list .card-link .card-button {
   height: 35px;
   width: 35px;
   color: #5372F0;
@@ -468,8 +475,10 @@ footer {
 
 .card-container {
   width: 100%;
-  max-width: 90%; /* Sesuaikan untuk layar lebar */
-  overflow: hidden; /* Tetap menyembunyikan elemen di luar */
+  max-width: 90%;
+  /* Sesuaikan untuk layar lebar */
+  overflow: hidden;
+  /* Tetap menyembunyikan elemen di luar */
   position: relative;
 }
 
@@ -477,12 +486,15 @@ footer {
   display: flex;
   gap: -4rem;
   transition: transform 1s ease-in-out;
-  will-change: transform; /* Optimalisasi performa */
+  will-change: transform;
+  /* Optimalisasi performa */
 }
 
 .card-article {
-  flex: 0 0 100%; /* Ukuran card penuh dalam container */
-  max-width: 100%; /* Responsif untuk layar kecil */
+  flex: 0 0 100%;
+  /* Ukuran card penuh dalam container */
+  max-width: 100%;
+  /* Responsif untuk layar kecil */
   text-align: center;
 }
 
@@ -522,41 +534,59 @@ footer {
 
 
 
-.card-img{
+.card-img {
   border-radius: 12px;
 }
 
 @media screen and (min-width: 1190px) {
-    .card-img{
-      width: 400px;
-      position: relative;
-      top: 50px;
-      border-radius: 12px;
-    }
+  .card-img {
+    width: 400px;
+    position: relative;
+    top: 50px;
+    border-radius: 12px;
+  }
 
-    .card-description-container{
-      position: relative;
-      left: 427px;
-    }
+  .card-description-container {
+    position: relative;
+    left: 427px;
+  }
 
-    #nextBtn {
-      right: 35px;
-    
-    }
+  #nextBtn {
+    right: 35px;
 
-    .card-container {
-      margin-left: 2%;
-      height: 100vh;
-    }
-  
-    .card-content-container {
-      grid-template-columns: repeat(3, 1fr);
-      margin-right: 20px;
-    }
-  
-    .card-description-container {
-      margin-left: 35px;
-      width: 385px;
-      padding-inline: 2.5rem;
-    }
- }
+  }
+
+  .card-container {
+    margin-left: 2%;
+    height: 100vh;
+  }
+
+  .card-content-container {
+    grid-template-columns: repeat(3, 1fr);
+    margin-right: 20px;
+  }
+
+  .card-description-container {
+    margin-left: 35px;
+    width: 385px;
+    padding-inline: 2.5rem;
+  }
+}
+
+.footer {
+  color: white;
+  padding: 20px 0;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.map-container {
+  height: 200px;
+}

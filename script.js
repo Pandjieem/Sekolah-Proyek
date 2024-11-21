@@ -51,5 +51,6 @@ prevBtn.addEventListener('click', () => {
     updateCarousel();
 });
 
+
 // Initial setup
 updateCarousel();
