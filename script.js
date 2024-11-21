@@ -22,34 +22,43 @@ function closeNav() {
   document.getElementById("openBtn").innerHTML = "&#9776;";
   // Menambahkan event listener untuk membuka menu
   document.getElementById("openBtn").setAttribute("onclick", "openNav()");
-}
-
-
-const cardContainer = document.querySelector('.card-content-container');
-const cards = document.querySelectorAll('.card-article');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+}const cardContentContainer = document.querySelector(".card-content-container");
+const cards = document.querySelectorAll(".card-article");
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
 
 let currentIndex = 0;
-const totalCards = cards.length;
 
-// Function to update the carousel position
-function updateCarousel() {
-    const offset = -currentIndex * cards[0].offsetWidth; // Calculate offset
-    cardContainer.style.transform = `translateX(${offset}px)`;
-}
+// Hitung lebar kartu untuk memastikan pergeseran tepat
+const calculateCardWidth = () => {
+  const cardWidth = cards[0].offsetWidth;
+  return cardWidth + parseFloat(getComputedStyle(cardContentContainer).gap);
+};
 
-// Event listener for next button
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalCards; // Loop back to the first card
-    updateCarousel();
+// Geser ke kartu tertentu
+const slideTo = (index) => {
+  const cardWidth = calculateCardWidth();
+  cardContentContainer.style.transform = `translateX(${-cardWidth * index}px)`;
+  currentIndex = index;
+};
+
+// Tombol "Next"
+nextBtn.addEventListener("click", () => {
+  if (currentIndex < cards.length - 3) {
+    slideTo(currentIndex + 1);
+  } else {
+    slideTo(0); // Kembali ke awal
+  }
 });
 
-// Event listener for previous button
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalCards) % totalCards; // Loop back to the last card
-    updateCarousel();
+// Tombol "Prev"
+prevBtn.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    slideTo(currentIndex - 1);
+  } else {
+    slideTo(cards.length - 3); // Kembali ke akhir
+  }
 });
 
-// Initial setup
-updateCarousel();
+// Atur ulang posisi awal
+slideTo(currentIndex);
