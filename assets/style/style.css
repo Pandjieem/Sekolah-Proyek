@@ -165,6 +165,7 @@ body {
     margin-inline: 1rem;
     transform: translate(0px, -130px);
   }
+
   .card-description-container {
     width: 250px;
     padding: 1rem;
@@ -203,23 +204,29 @@ body {
 }
 
 .card-description-container {
-  width: 220px; /* Ukuran lebih kecil */
+  width: 220px;
+  /* Ukuran lebih kecil */
   background-color: var(--container-color);
-  padding: 1rem 1.5rem; /* Padding disesuaikan */
-  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1); /* Bayangan lebih ringan */
+  padding: 1rem 1.5rem;
+  /* Padding disesuaikan */
+  box-shadow: 0 4px 16px hsla(0, 0%, 0%, 0.1);
+  /* Bayangan lebih ringan */
   border-radius: 0.75rem;
   position: absolute;
-  bottom: -12rem; /* Posisi lebih dekat */
+  bottom: -12rem;
+  /* Posisi lebih dekat */
   left: 0;
   right: 0;
   margin-inline: auto;
   opacity: 0;
-  transition: opacity 0.8s 0.5s; /* Peralihan lebih cepat */
+  transition: opacity 0.8s 0.5s;
+  /* Peralihan lebih cepat */
 }
 
 @media screen and (min-width: 768px) {
   .card-description-container {
-    width: 300px; /* Lebih besar untuk layar menengah */
+    width: 300px;
+    /* Lebih besar untuk layar menengah */
     padding: 1.25rem 1.75rem;
     bottom: -9rem;
   }

@@ -64,7 +64,11 @@ if (!isset($_SESSION['user_id'])) {
                 <!-- Profil Sekolah Section -->
                 <section id="profile-sekolah" class="profile-sekolah py-5">
                     <div class="container">
+<<<<<<< HEAD
                         <h2 class="text-center mb-4">Modifikasi Foto Pada Halaman</h2>
+=======
+                        <h2 class="text-center mb-4">Tambahkan Gambar ke Halaman Utama</h2>
+>>>>>>> f082452729029b4425ea085bd7ce4b6c5d57d8bf
                         <div class="row">
                             <div class="text-justify">
                                 <div class="container mb-5">
@@ -96,7 +100,11 @@ if (!isset($_SESSION['user_id'])) {
                                                             <input type="text" name="" id="" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
+<<<<<<< HEAD
                                                             <button class="form-control mt-2">Tambahkan Foto</button>
+=======
+                                                            <button class="form-control mt-2 btn btn-success">Tambahkan Foto</button>
+>>>>>>> f082452729029b4425ea085bd7ce4b6c5d57d8bf
                                                         </div>
                                                     </form>
                                                 </div>
@@ -122,7 +130,11 @@ if (!isset($_SESSION['user_id'])) {
                                                                 <input type="file" class="form-control" id="imageInput" accept="image/*" onchange="previewImage(event)">
                                                             </div>
                                                             <div class="mb-3">
+<<<<<<< HEAD
                                                                 <button class="form-control mt-2">Ganti Cover Foto</button>
+=======
+                                                                <button class="form-control mt-2 btn btn-success">Ganti Cover Foto</button>
+>>>>>>> f082452729029b4425ea085bd7ce4b6c5d57d8bf
                                                             </div>
                                                         </form>
                                                     </div>
@@ -182,7 +194,11 @@ if (!isset($_SESSION['user_id'])) {
                                                                 <input type="file" class="form-control" id="imageInput" accept="image/*" onchange="previewImage(event)">
                                                             </div>
                                                             <div class="mb-3">
+<<<<<<< HEAD
                                                                 <button class="form-control mt-2">Ubah Foto</button>
+=======
+                                                                <button class="form-control mt-2 btn btn-success">Ubah Foto</button>
+>>>>>>> f082452729029b4425ea085bd7ce4b6c5d57d8bf
                                                             </div>
                                                         </form>
                                                     </div>
@@ -195,8 +211,50 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                 </section>
 
+<<<<<<< HEAD
                 <footer class="text-center  py-4 bg-dark">
                     <p>&copy; 2024 YPS Miftahul Falah Diski. All rights reserved.</p>
+=======
+                <footer class="footer bg-black text-center text-md-start">
+                    <div class="container py-4">
+                        <div class="row">
+                            <!-- Section 1: Contact Info -->
+                            <div class="col-md-4 mb-3">
+                                <h5>Hubungi Kami</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-phone"></i> +62 81266841237</li>
+                                    <li><i class="fas fa-envelope"></i> info@example.com</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>Jl. Paya Bakung, Dusun VII Desa No.24, Kec. Sunggal, Kabupaten Deli Serdang, Sumatera Utara 20351</li>
+                                </ul>
+                            </div>
+                
+                            <!-- Section 2: Google Map -->
+                            <div class="col-md-4 mb-3">
+                                <h5>Lokasi Kami</h5>
+                                <div class="map-container">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15927.691931491338!2d98.5520034!3d3.6051062!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312941ba62814f%3A0x29a9edb53d498e25!2sYPS%20Miftahul%20Falah%20Diski!5e0!3m2!1sid!2sid!4v1732157735641!5m2!1sid!2sid"     width="100%" 
+                                        height="100%" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                            </div>
+                
+                            <!-- Section 3: Social Media -->
+                            <div class="col-md-4 mb-3">
+                                <h5>Follow Us</h5>
+                                <div>
+                                    <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                                    <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <p class="mb-0">&copy; 2024 YPS Miftahul Falah Diski. All rights reserved.</p>
+                        </div>
+                    </div>
+>>>>>>> f082452729029b4425ea085bd7ce4b6c5d57d8bf
                 </footer>
             </div>
         </div>
