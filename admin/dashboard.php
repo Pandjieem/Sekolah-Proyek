@@ -13,6 +13,49 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
+// Menambahkan atau memperbarui cover image
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cover'])) {
+    $title = $_POST['title'];
+    $image = $_FILES['cover_image']['name'];
+    $target = "../assets/cover/" . basename($image);
+
+    // Cek apakah folder img ada
+    if (!is_dir('../assets/cover/')) {
+        echo "Folder gambar tidak ditemukan.";
+    } else {
+        // Jika ada gambar baru, unggah gambar baru
+        if (move_uploaded_file($_FILES['cover_image']['tmp_name'], $target)) {
+            // Cek apakah cover image sudah ada di database
+            $sql = "SELECT * FROM cover_image WHERE id = 1";  // Hanya satu record untuk cover
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Jika sudah ada, update cover image
+                $row = $result->fetch_assoc();
+                if (file_exists($row['image_path'])) {
+                    unlink($row['image_path']); // Hapus gambar lama
+                }
+
+                $sql = "UPDATE cover_image SET title='$title', image_path='$target' WHERE id=1";
+            } else {
+                // Jika belum ada, insert baru
+                $sql = "INSERT INTO cover_image (title, image_path) VALUES ('$title', '$target')";
+            }
+
+            if ($conn->query($sql)) {
+                header("Location: dashboard.php"); // Redirect ke halaman dashboard setelah update
+            } else {
+                echo "Gagal memperbarui cover image.";
+            }
+        } else {
+            echo "Gagal mengunggah gambar.";
+        }
+    }
+}
+
+// Ambil data cover image
+$cover = $conn->query("SELECT * FROM cover_image WHERE id = 1")->fetch_assoc();
+
 // Tambah Gambar
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
     $title = $_POST['title'];
@@ -127,6 +170,33 @@ $images = $conn->query("SELECT * FROM images");
                 </div>
             </div>
 
+            <!-- Form untuk Update Cover Image -->
+            <section id="profile-sekolah" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-4">Update Cover Image</h2>
+                    <form action="dashboard.php" method="POST" enctype="multipart/form-data" class="mb-4">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Judul Cover Image</label>
+                            <input type="text" name="title" id="title" class="form-control" value="<?= $cover['title'] ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cover_image" class="form-label">Pilih Gambar Baru</label>
+                            <input type="file" name="cover_image" id="cover_image" class="form-control" required>
+                        </div>
+                        <button type="submit" name="update_cover" class="btn btn-success">Update Cover Image</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Menampilkan Cover Image -->
+            <section id="current-cover" class="py-5">
+                <div class="container text-center">
+                    <h2 class="mb-4">Cover Image Saat Ini</h2>
+                    <img src="<?= $cover['image_path'] ?>" alt="Cover Image" class="img-fluid" style="max-height: 400px; object-fit: cover;">
+                    <p class="mt-3"><?= $cover['title'] ?></p>
+                </div>
+            </section>
+
             <!-- Form Tambah Gambar -->
             <section id="profile-sekolah" class="py-5">
                 <div class="container">
@@ -142,77 +212,42 @@ $images = $conn->query("SELECT * FROM images");
                         </div>
                         <div class="mb-3">
                             <label for="instagram" class="form-label">Link Instagram</label>
-                            <input type="text" name="instagram" id="instagram" class="form-control">
+                            <input type="text" name="instagram" id="instagram" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="image" class="form-label">Pilih Gambar</label>
                             <input type="file" name="image" id="image" class="form-control" required>
                         </div>
-                        <button type="submit" name="add_image" class="btn btn-success">Tambah Gambar</button>
+                        <button type="submit" name="add_image" class="btn btn-primary">Tambah Gambar</button>
                     </form>
                 </div>
             </section>
 
             <!-- Galeri Gambar -->
-            <section id="galeri" class="py-5">
+            <section id="gallery" class="py-5">
                 <div class="container">
                     <h2 class="text-center mb-4">Galeri Gambar</h2>
                     <div class="row">
-                        <?php while ($row = $images->fetch_assoc()): ?>
-                            <div class="col-md-4 mb-3">
+                        <?php while ($row = $images->fetch_assoc()) { ?>
+                            <div class="col-md-4">
                                 <div class="card">
-                                    <img src="<?= $row['image_path'] ?>" class="card-img-top" alt="<?= $row['title'] ?>">
+                                    <img src="<?= $row['image_path'] ?>" alt="<?= $row['title'] ?>" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $row['title'] ?></h5>
                                         <p class="card-text"><?= $row['description'] ?></p>
-                                        <a href="<?= $row['instagram'] ?>" target="_blank" class="btn btn-primary">Lihat Instagram</a>
-                                        <a href="dashboard.php?delete=<?= $row['id'] ?>" class="btn btn-danger"
-                                           onclick="return confirm('Hapus gambar ini?')">Hapus</a>
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal<?= $row['id'] ?>">Ganti Gambar</button>
+                                        <a href="dashboard.php?delete=<?= $row['id'] ?>" class="btn btn-danger">Hapus</a>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Modal untuk Mengubah Gambar -->
-                            <div class="modal fade" id="updateModal<?= $row['id'] ?>" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="updateModalLabel">Ganti Gambar</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="dashboard.php" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="image_id" value="<?= $row['id'] ?>">
-                                                <div class="mb-3">
-                                                    <label for="title" class="form-label">Judul Gambar</label>
-                                                    <input type="text" name="title" id="title" class="form-control" value="<?= $row['title'] ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="description" class="form-label">Deskripsi Gambar</label>
-                                                    <input type="text" name="description" id="description" class="form-control" value="<?= $row['description'] ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="instagram" class="form-label">Link Instagram</label>
-                                                    <input type="text" name="instagram" id="instagram" class="form-control" value="<?= $row['instagram'] ?>">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="image" class="form-label">Pilih Gambar Baru</label>
-                                                    <input type="file" name="image" id="image" class="form-control">
-                                                </div>
-                                                <button type="submit" name="update_image" class="btn btn-success">Update Gambar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
+                        <?php } ?>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

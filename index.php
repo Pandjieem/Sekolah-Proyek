@@ -5,7 +5,15 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$images = $conn->query("SELECT * FROM images ORDER BY uploaded_at DESC");
+// Ambil data cover image, jika ada
+$cover = $conn->query("SELECT * FROM cover_image WHERE id = 1");
+if ($cover->num_rows > 0) {
+    $cover = $cover->fetch_assoc();
+    $background_image = $cover['image_path'];  // Ambil path gambar untuk background
+} else {
+    // Jika belum ada cover image, set gambar default
+    $background_image = 'default-cover.jpg';  // Gambar default jika belum ada cover image
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +28,25 @@ $images = $conn->query("SELECT * FROM images ORDER BY uploaded_at DESC");
     <link rel="stylesheet" href="assets/style/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
+<style>
+        /* CSS untuk background cover section */
+        .cover-section {
+            background-image: url('<?php echo $background_image; ?>'); /* Menggunakan gambar dari database */
+            background-size: cover;
+            background-position: center;
+            height: 300px; /* Sesuaikan tinggi sesuai kebutuhan */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+</style>
 
 <body>
     <div id="main">
-        <span id="openBtn" style="font-size:30px;cursor:pointer;color: rgb(0, 0, 0);" onclick="openNav()">&#9776;</span>
+        <span id="openBtn" style="font-size:40px;cursor:pointer;color: rgb(0, 0, 0);" onclick="openNav()">&#9776;</span>
 
         <!-- Loading Animation -->
         <div id="loading" class="loading">
@@ -106,7 +129,7 @@ $images = $conn->query("SELECT * FROM images ORDER BY uploaded_at DESC");
                                         $imagePath = $folder . $imageFile;
                                 ?>
                                         <article class="card-article">
-                                            <img src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
+                                            <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
                                             <div class="card-description-container">
                                                 <span class="card-description"><?= htmlspecialchars($imageFile) ?></span>
                                                 <h2 class="card-title">Sumatera Utara 2024</h2>
