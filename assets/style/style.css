@@ -162,7 +162,7 @@ body {
 }
 
 /* hp */
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 360px) {
   .card-container {
     margin-inline: 1rem;
     transform: translate(0px, -130px);
@@ -172,25 +172,11 @@ body {
     width: 250px;
     padding: 1rem;
   }
-
-  .sidenav{
-    align-items: none;
-    display: none;
-   }
-  
-   .sidebar{
-    align-items: none;
-    display: none;
-   }
   
     .card-img{
       position: relative;
       width: 94%;    
     }
-
-
-    
-  
 }
 
 /* tablet */
@@ -241,7 +227,6 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 kolom */
     gap: 2rem; /* Jarak antar kartu */
-    
   }
 
   .card-article {
@@ -300,6 +285,7 @@ footer {
   top: 20px;
   left: 20px;
   z-index: 1000;
+  transition: 0.55s;
   /* Menjaga agar tombol tetap di atas konten lain */
 }
 
