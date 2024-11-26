@@ -13,9 +13,15 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
+// Fungsi untuk menghindari pengiriman berulang
+function redirect_to_dashboard() {
+    header("Location: dashboard.php");
+    exit();
+}
+
 // Menambahkan atau memperbarui cover image
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cover'])) {
-    $title = $_POST['title'];
+    $title = htmlspecialchars($_POST['title']);
     $image = $_FILES['cover_image']['name'];
     $target = "../assets/cover/" . basename($image);
 
@@ -23,6 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cover'])) {
     if (!is_dir('../assets/cover/')) {
         echo "Folder gambar tidak ditemukan.";
     } else {
+        // Validasi tipe file gambar
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $image_type = $_FILES['cover_image']['type'];
+        if (!in_array($image_type, $allowed_types)) {
+            echo "Hanya file gambar yang diperbolehkan (JPEG, PNG, GIF).";
+            exit();
+        }
+
         // Jika ada gambar baru, unggah gambar baru
         if (move_uploaded_file($_FILES['cover_image']['tmp_name'], $target)) {
             // Cek apakah cover image sudah ada di database
@@ -43,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cover'])) {
             }
 
             if ($conn->query($sql)) {
-                header("Location: dashboard.php"); // Redirect ke halaman dashboard setelah update
+                redirect_to_dashboard(); // Redirect ke halaman dashboard setelah update
             } else {
                 echo "Gagal memperbarui cover image.";
             }
@@ -58,20 +72,30 @@ $cover = $conn->query("SELECT * FROM cover_image WHERE id = 1")->fetch_assoc();
 
 // Tambah Gambar
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $instagram = $_POST['instagram'];
+    $title = htmlspecialchars($_POST['title']);
+    $description = htmlspecialchars($_POST['description']);
+    $instagram = htmlspecialchars($_POST['instagram']);
     $image = $_FILES['image']['name'];
     $target = "../assets/img/" . basename($image);
+    $img = basename($image);
 
     // Cek apakah folder img ada
     if (!is_dir('../assets/img/')) {
         echo "Folder gambar tidak ditemukan.";
     } else {
+        // Validasi tipe file gambar
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $image_type = $_FILES['image']['type'];
+        if (!in_array($image_type, $allowed_types)) {
+            echo "Hanya file gambar yang diperbolehkan (JPEG, PNG, GIF).";
+            exit();
+        }
+
         if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-            $sql = "INSERT INTO images (title, description, instagram, image_path) 
-                    VALUES ('$title', '$description', '$instagram', '$target')";
+            $sql = "INSERT INTO images (title, description, instagram, image_path, img_name) 
+                    VALUES ('$title', '$description', '$instagram', '$target', '$img')";
             $conn->query($sql);
+            redirect_to_dashboard(); // Redirect ke halaman dashboard setelah menambah gambar
         } else {
             echo "Gagal mengunggah gambar.";
         }
@@ -81,10 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
 // Update Gambar
 if (isset($_POST['update_image']) && isset($_POST['image_id'])) {
     $image_id = $_POST['image_id'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $instagram = $_POST['instagram'];
-
+    $title = htmlspecialchars($_POST['title']);
+    $description = htmlspecialchars($_POST['description']);
+    $instagram = htmlspecialchars($_POST['instagram']);
+    
     // Ambil path gambar lama
     $sql = "SELECT image_path FROM images WHERE id=$image_id";
     $result = $conn->query($sql);
@@ -100,7 +124,16 @@ if (isset($_POST['update_image']) && isset($_POST['image_id'])) {
 
         // Upload gambar baru
         $image = $_FILES['image']['name'];
-        $target = "../assets/img/" . basename($image);  // Update path ke ../assets/img/
+        $target = "../assets/img/" . basename($image);
+        
+        // Validasi tipe file gambar
+        $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+        $image_type = $_FILES['image']['type'];
+        if (!in_array($image_type, $allowed_types)) {
+            echo "Hanya file gambar yang diperbolehkan (JPEG, PNG, GIF).";
+            exit();
+        }
+
         if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
             $image_path = $target;
         } else {
@@ -113,32 +146,12 @@ if (isset($_POST['update_image']) && isset($_POST['image_id'])) {
     }
 
     // Update data gambar di database
-    $sql = "UPDATE images SET title='$title', description='$description', instagram='$instagram', image_path='$image_path' WHERE id=$image_id";
+    $img_name = basename($image);
+    $sql = "UPDATE images SET title='$title', description='$description', instagram='$instagram', image_path='$image_path', img_name='$img_name' WHERE id=$image_id";
     if ($conn->query($sql)) {
-        header("Location: dashboard.php");
+        redirect_to_dashboard();
     } else {
         echo "Gagal memperbarui gambar.";
-    }
-}
-
-
-// Tambah Gambar
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $instagram = $_POST['instagram'];
-    $image = $_FILES['image']['name'];
-    $target = "../assets/img/" . basename($image);
-
-    // Cek apakah folder img ada
-    if (!is_dir('../assets/img/')) {
-        echo "Folder gambar tidak ditemukan.";
-    } else {
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-            $sql = "INSERT INTO images (title, description, instagram, image_path) 
-                    VALUES ('$title', '$description', '$instagram', '$target')";
-            $conn->query($sql);
-        }
     }
 }
 
@@ -154,7 +167,7 @@ if (isset($_GET['delete'])) {
     }
 
     $conn->query("DELETE FROM images WHERE id=$id");
-    header("Location: dashboard.php");
+    redirect_to_dashboard();
 }
 
 // Ambil semua gambar
@@ -188,6 +201,7 @@ $images = $conn->query("SELECT * FROM images");
                 <div class="container">
                     <h1 class="display-4 font-weight-bold">Halaman Admin</h1>
                     <p class="lead">Memodifikasi Halaman Utama</p>
+                    <a href="logout.php" class="btn btn-lg font-weight-bold"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </div>
             </div>
 

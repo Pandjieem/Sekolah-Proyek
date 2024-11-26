@@ -23,25 +23,28 @@ if ($cover->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YPS Miftahul Falah Diski</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <style>
-        /* CSS untuk background cover section */
-        .cover-section {
-            background-image: url('<?php echo $background_image; ?>'); /* Menggunakan gambar dari database */
-            background-size: cover;
-            background-position: center;
-            height: 300px; /* Sesuaikan tinggi sesuai kebutuhan */
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100vh;
-        }
+    /* CSS untuk background cover section */
+    .cover-section {
+        background-image: url('<?php echo $background_image; ?>');
+        /* Menggunakan gambar dari database */
+        background-size: cover;
+        background-position: center;
+        height: 300px;
+        /* Sesuaikan tinggi sesuai kebutuhan */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100vh;
+    }
 </style>
 
 <body>
@@ -124,21 +127,49 @@ if ($cover->num_rows > 0) {
                                         return preg_match('/\.(jpg|jpeg|png|gif)$/i', $file) && is_file($folder . $file);
                                     });
 
-                                    // Menampilkan gambar-gambar yang ditemukan di folder
+                                    // Menampilkan gambar dengan judul dan deskripsi yang sesuai dari database
                                     foreach ($imageFiles as $imageFile):
                                         $imagePath = $folder . $imageFile;
+
+                                        // Query database untuk mendapatkan judul dan deskripsi berdasarkan nama file
+                                        $stmt = $conn->prepare("SELECT title, description, instagram FROM images WHERE img_name = ?");
+                                        $stmt->bind_param("s", $imageFile);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                // Menampilkan setiap gambar dengan data yang relevan
                                 ?>
-                                        <article class="card-article">
-                                            <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
-                                            <div class="card-description-container">
-                                                <span class="card-description"><?= htmlspecialchars($imageFile) ?></span>
-                                                <h2 class="card-title">Sumatera Utara 2024</h2>
-                                                <a href="#" class="card-button">Read More</a>
-                                            </div>
-                                        </article>
-                                <?php endforeach;
+                                                <article class="card-article">
+                                                    <div class="card-image-wrapper">
+                                                        <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
+                                                    </div>
+                                                    <div class="card-description-container">
+                                                        <h3 class="card-title"><?= htmlspecialchars($row['title']) ?></h3>
+                                                        <p class="card-description"><?= htmlspecialchars($row['description']) ?></p>
+                                                        <a class="card-link" href="<?= htmlspecialchars($row['instagram']) ?>" target="_blank">Instagram</a>
+                                                    </div>
+                                                </article>
+                                            <?php
+                                            }
+                                        } else {
+                                            // Jika data tidak ditemukan di database
+                                            ?>
+                                            <article class="card-article">
+                                                <div class="card-image-wrapper">
+                                                    <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
+                                                </div>
+                                                <div class="card-description-container">
+                                                    <h3 class="card-title">Judul tidak tersedia</h3>
+                                                    <p class="card-description">Deskripsi tidak tersedia untuk gambar ini.</p>
+                                                </div>
+                                            </article>
+                                <?php
+                                        }
+                                    endforeach;
                                 } else {
-                                    echo "Folder gambar tidak ditemukan.";
+                                    echo "<p class='error-message'>Folder gambar tidak ditemukan.</p>";
                                 }
                                 ?>
                             </div>
@@ -148,6 +179,7 @@ if ($cover->num_rows > 0) {
                         </span>
                     </div>
                 </section>
+
 
                 <!-- Organisasi Section -->
                 <section id="organisasi" class="profile-sekolah py-5">
@@ -206,6 +238,7 @@ if ($cover->num_rows > 0) {
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="script.js"></script>
 </body>
 
