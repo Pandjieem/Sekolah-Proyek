@@ -182,12 +182,16 @@ body {
 /* tablet */
 @media screen and (min-width: 768px) {
   .card-content-container {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 1.5rem;    
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 1.5rem;  
   }
-
+  
   .sidenav {
     width: 100%;
+  }
+
+  .img-galery{
+    height: auto;
   }
 }
 
@@ -214,7 +218,7 @@ body {
 
 @media screen and (min-width: 768px) {
   .card-description-container {
-    width: 300px;
+    width: 100%;
     /* Lebih besar untuk layar menengah */
     padding: 1.25rem 1.75rem;
     bottom: -9rem;
@@ -336,7 +340,7 @@ footer {
 
 .text-center-galery {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  transform: translate(0px, 40px);
 }
 
 /* Tata letak tombol panah */

@@ -57,7 +57,7 @@ if ($cover->num_rows > 0) {
             <div id="mySidenav" class="sidenav">
                 <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
                 <a href="#profile-sekolah" class="sidebar-link py-3 px-4">Profil Sekolah</a>
-                <a href="#galeri" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
+                <a href="#galery-kegiatan" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
                 <a href="#organisasi" class="sidebar-link py-3 px-4">Organisasi</a>
             </div>
 

@@ -138,8 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_image'])) {
             $sql = "INSERT INTO images (title, description, instagram, image_path) 
                     VALUES ('$title', '$description', '$instagram', '$target')";
             $conn->query($sql);
-        } else {
-            echo "Gagal mengunggah gambar.";
         }
     }
 }
@@ -199,8 +197,8 @@ $images = $conn->query("SELECT * FROM images");
                     <h2 class="text-center mb-4">Update Cover Image</h2>
                     <form action="dashboard.php" method="POST" enctype="multipart/form-data" class="mb-4">
                         <div class="mb-3">
-                            <label for="title" class="form-label">Judul Cover Image</label>
-                            <input type="text" name="title" id="title" class="form-control" value="<?= $cover['title'] ?>" required>
+                            <label for="title" class="form-label">Tanggal Cover Image</label>
+                            <input type="date" name="title" id="title" class="form-control" value="<?= $cover['title'] ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="cover_image" class="form-label">Pilih Gambar Baru</label>
@@ -216,7 +214,6 @@ $images = $conn->query("SELECT * FROM images");
                 <div class="container text-center">
                     <h2 class="mb-4">Cover Image Saat Ini</h2>
                     <img src="<?= $cover['image_path'] ?>" alt="Cover Image" class="img-fluid" style="max-height: 400px; object-fit: cover;">
-                    <p class="mt-3"><?= $cover['title'] ?></p>
                 </div>
             </section>
 
