@@ -400,6 +400,7 @@ footer {
 .card-description {
   font-size: 0.9rem;
   color: #666;
+  margin-top: -5px;
 }
 
 .card-button {
@@ -415,6 +416,7 @@ footer {
 
 .card-button:hover {
   background-color: #0056b3;
+  color: #2e8b57;
 }
 
 /* Atur untuk layar dengan minimal 1190px */
