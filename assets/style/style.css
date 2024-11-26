@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
 :root {
@@ -180,7 +179,7 @@ body {
 }
 
 /* tablet */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 968px) {
   .card-content-container {
     grid-template-columns: repeat(1, 1fr);
     column-gap: 1.5rem;  
@@ -193,6 +192,16 @@ body {
   .img-galery{
     height: auto;
   }
+
+  .card-article {
+    flex: 0 0 190px;
+    max-width: 100%;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+
+  
 }
 
 .card-description-container {
@@ -225,7 +234,7 @@ body {
   }
 }
 
-/*laptop*/
+/* /laptop/ */
 @media screen and (min-width: 1190px) {
   .card-content-container {
     display: grid;
@@ -374,10 +383,24 @@ footer {
 
 /* Gaya untuk setiap kartu */
 .card-article {
-  flex: 0 0 490px;
+  flex: 0 0 370px;
   max-width: 100%;
   text-align: center;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* ipad */
+@media screen and (min-width: 600px) {
+  .card-article {
+    flex: 0 0 339px;
+ 
+  }
+  @media screen and (max-width: 800px) {
+    .card-article {
+      flex: 0 0 339px;
+   
+    }
+
 }
 
 .card-article img {
@@ -433,4 +456,89 @@ footer {
   object-fit: cover; 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container-karakter{
+  width: 100%;
+  height: 850px;
+  background-color: rgb(250, 250, 250);
+  
+}
+
+.center-h3 h2{
+    text-align: center;
+    color: var(--title-color);
+    transform: translateY(25px);
+}
+
+.center-h3{
+  text-align: center;
+  transform: translateY(25px);
+}
+
+.p-karakter{
+  display: flex;
+ 
+}
+
+.container-karakter{
+  padding: 20px;
+ 
+}
+
+.p-karakter {
+  position: absolute;
+  top: 140px; 
+}
+
+
+#p-1{
+  transform: translateX(110px);
+}
+
+#p-2{
+  transform: translateX(245px);
+}
+
+#p-3{
+  transform: translateX(370px);
+}
+
+.gambarr{
+  width: 180px;
+  height: 180px;
+  gap: 20px;
+  border-radius: 50%;
+  -moz-border-radius:75px;
+  -webkit-border-radius: 75px;
+}
+
+.img-1{
+}
+
+.img-2{
+
+}
+
+.p-karakter{
+  gap: 160px;
+  transform: translateX(36%);
+}
+
+.kalimat{
+  position: relative;
+  top: 340px;
+  left: 350px;
+}
+
+.kepalasekolah{
+  position: relative;
+  top: 300px;
+  left: 685px;
+}
+
+.pembina{
+  position: relative;
+  top: 260px;
+ left: 1035px;
 }

@@ -198,6 +198,26 @@ if ($cover->num_rows > 0) {
                     </div>
                 </section>
 
+                <div class="container-karakter">
+                    <div class="header-karakter center-h3">
+                        <h2 id="text-karakter">Organ Yayasan</h2>
+                    </div>
+
+                    <div class="content-karakter center-h3">
+                        <h3 class="center-h3">Pembina</h3>
+                        <div class="p-karakter">
+                            <img src="assets/img/gambar.jpg" class="img-1 gambarr">
+                            <img src="assets/img/gambar.jpg" class="img-2 gambarr">
+                            <img src="assets/img/gambar.jpg" class="img-3 gambarr">
+                        </div>
+
+                    </div>
+
+                    <p class="kalimat pengawas">Pembina<br></p>
+                    <p class="kalimat kepalasekolah">Kepala Sekolah</p>
+                    <p class="kalimat pembina">Pembina</p>
+                </div>
+
                 <!-- Footer -->
                 <footer class="footer bg-black text-center text-md-start">
                     <div class="container py-4">
