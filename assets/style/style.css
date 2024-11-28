@@ -491,6 +491,10 @@ footer {
   margin-top: 20px;
 }
 
+.p-karakter img{
+  height: 55vh;
+}
+
 .gambarr {
   width: 20vw;
   height: auto;
