@@ -27,11 +27,11 @@ $images = $imageHandler->getAllImages();
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-    
+
 <body>
     <div id="main">
         <!-- TOMBOL LOGOUT DAN KEMBALI -->
-         <a href="../logout.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="../logout.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         <a href="../dashboard.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Kembali</a>
         <div class="d-flex">
             <div id="mySidenav" class="sidenav">
@@ -56,21 +56,21 @@ $images = $imageHandler->getAllImages();
                         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" class="mb-4">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Tanggal Cover Image</label>
-                                <input type="date" 
-                                       name="title" 
-                                       id="title" 
-                                       class="form-control" 
-                                       value="<?= $cover ? $cover['title'] : '' ?>" 
-                                       required>
+                                <input type="date"
+                                    name="title"
+                                    id="title"
+                                    class="form-control"
+                                    value="<?= $cover ? $cover['title'] : '' ?>"
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="cover_image" class="form-label">Pilih Gambar Baru</label>
-                                <input type="file" 
-                                       name="cover_image" 
-                                       id="cover_image" 
-                                       class="form-control" 
-                                       accept="image/jpeg,image/png,image/gif"
-                                       required>
+                                <input type="file"
+                                    name="cover_image"
+                                    id="cover_image"
+                                    class="form-control"
+                                    accept="image/jpeg,image/png,image/gif"
+                                    required>
                             </div>
                             <button type="submit" name="update_cover" class="btn btn-success">Update Cover Image</button>
                         </form>
@@ -78,17 +78,19 @@ $images = $imageHandler->getAllImages();
                 </section>
 
                 <!-- Menampilkan Cover Image -->
-                <section id="current-cover" class="py-5">
-                    <div class="container text-center">
-                        <h2 class="mb-4">Cover Image Saat Ini</h2>
-                        <?php if ($cover && isset($cover['image_path'])): ?>
-                            <img src="<?= htmlspecialchars($cover['image_path']) ?>" 
-                                 alt="Cover Image" 
-                                 class="img-fluid" 
-                                 style="max-height: 400px; object-fit: cover;">
-                        <?php else: ?>
-                            <p>Belum ada cover image</p>
-                        <?php endif; ?>
+                <section id="current-cover" class="py-5 mb-5">
+                    <div class="container text-center d-flex justify-content-center align-items-center" style="height: 400px;">
+                        <div>
+                            <h2 class="mb-4">Cover Image Saat Ini</h2>
+                            <?php if ($cover && isset($cover['image_path'])): ?>
+                                <img src="<?= htmlspecialchars($cover['image_path']) ?>"
+                                    alt="Cover Image"
+                                    class="img-fluid"
+                                    style="max-height: 450px; object-fit: cover;;">
+                            <?php else: ?>
+                                <p>Belum ada cover image</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </section>
             </div>
