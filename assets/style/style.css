@@ -534,7 +534,7 @@ footer {
 }
 
 #backToTop {
-  background-color: #007bff;
+  background-color: #167e43;
   /* Bootstrap primary color */
   color: white;
   border: none;
@@ -545,6 +545,6 @@ footer {
 }
 
 #backToTop:hover {
-  background-color: #0056b3;
+  background-color: #309342;
   /* Darker shade on hover */
 }
