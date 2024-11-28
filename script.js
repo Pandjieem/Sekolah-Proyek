@@ -5,7 +5,12 @@ function openNav() {
   document.getElementById("main").style.marginLeft = "250px";
   // Mengubah warna latar belakang
   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  
+  document.getElementById("opacity-dashboard").style.backgroundColor = "rgba(0,0,0,0.1)";
+  document.getElementById("tidur").style.backgroundColor = "rgba(0,0,0,0.1)";
+  document.getElementById("gambarpembina").style.opacity = "0.5";
+  document.getElementById("gambarkepalasekolah").style.opacity = "0.5";
+  document.getElementById("gambarsekretaris").style.opacity = "0.5";
+
   // Mengubah ikon tombol menjadi X
   document.getElementById("openBtn").innerHTML = "&times;";
   document.getElementById("openBtn").style.transform = "translateX(175px)";
@@ -25,7 +30,15 @@ function closeNav() {
   document.getElementById("openBtn").innerHTML = "&#9776;";
   // Menambahkan event listener untuk membuka menu
   document.getElementById("openBtn").setAttribute("onclick", "openNav()");
+  document.getElementById("opacity-dashboard").style.backgroundColor = "rgb(250, 250, 250);";
+  document.getElementById("tidur").style.backgroundColor = "rgb(250, 250, 250);";
+  document.getElementById("gambarpembina").style.opacity = "1";
+  document.getElementById("gambarkepalasekolah").style.opacity = "1";
+  document.getElementById("gambarsekretaris").style.opacity = "1";
 }
+
+
+
 
 const cardContentContainer = document.querySelector(".card-content-container");
 const cards = document.querySelectorAll(".card-article");

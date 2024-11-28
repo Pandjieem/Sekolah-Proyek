@@ -99,7 +99,8 @@ if ($cover->num_rows > 0) {
                 </section>
 
                 <!-- Galeri Kegiatan Section -->
-                <section id="galery-kegiatan" class="galery py-5">
+                 <!-- section di id= "galery-kegiatan" -->
+                <section id="tidur" class="galery py-5"> 
                     <h2 class="text-center-galery">Galeri Kegiatan</h2>
                     <div class="d-flex justify-content-center align-items-center position-relative">
                         <span id="prevBtn" class="arrow-btn">
@@ -152,7 +153,7 @@ if ($cover->num_rows > 0) {
                                             ?>
                                             <article class="card-article">
                                                 <div class="card-image-wrapper">
-                                                    <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
+                                                    <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img" >
                                                 </div>
                                                 <div class="card-description-container">
                                                     <h3 class="card-title">Judul tidak tersedia</h3>
@@ -192,28 +193,28 @@ if ($cover->num_rows > 0) {
                     </div>
                 </section>
 
-                <div class="container-karakter">
+                <div class="container-karakter" id="opacity-dashboard">
   <div class="center-h3">
     <h2>Organ Yayasan</h2>
   </div>
   <div class="p-karakter">
     <div class="character-item pembina2">
-      <img src="assets/cover/gambar.jpg" alt="Description 1" class="gambarr">
+      <img src="assets/cover/gambar.jpg" alt="Description 1" id="gambarpembina" class="gambarr">
       <p class="kalimat">Pembina</p>
     </div>
     <div class="character-item kepalasekolah2">
-      <img src="assets/cover/gambar.jpg" alt="Description 2" class="gambarr">
+      <img src="assets/cover/gambar.jpg" alt="Description 2" id="gambarkepalasekolah" class="gambarr">
       <p class="kepalasekolah">Kepala Sekolah</p>
     </div>
     <div class="character-item sekretaris2">
-      <img src="assets/cover/gambar.jpg" alt="Description 3" class="gambarr">
+      <img src="assets/cover/gambar.jpg" alt="Description 3" id="gambarsekretaris" class="gambarr">
       <p class="pembina">Sekretaris</p>
     </div>
   </div>
 </div>
 
                 <!-- Footer -->
-                <footer class="footer bg-black text-center text-md-start">
+                <footer class="footer bg-black text-center text-md-start" id="footer">
                     <div class="container py-4">
                         <div class="row">
                             <!-- Section 1: Contact Info -->

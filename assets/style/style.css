@@ -392,12 +392,12 @@ footer {
 /* ipad */
 @media screen and (min-width: 600px) {
   .card-article {
-    flex: 0 0 339px;
+    flex: 0 0 239px;
  
   }
   @media screen and (max-width: 800px) {
     .card-article {
-      flex: 0 0 339px;
+      flex: 0 0 239px;
    
     }
 
@@ -518,6 +518,7 @@ footer {
 
 @media (max-width: 480px) {
   .gambarr {
-    width: 90%; 
+    width: 90%;
+    transform: translateX(20px); 
   }
 }
