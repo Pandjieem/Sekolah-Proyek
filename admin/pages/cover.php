@@ -27,12 +27,12 @@ $images = $imageHandler->getAllImages();
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-
+    
 <body>
     <div id="main">
         <!-- TOMBOL LOGOUT DAN KEMBALI -->
-         <!-- <a href="../logout.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-        <a href="../dashboard.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Kembali</a> -->
+         <a href="../logout.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="../dashboard.php" class="btnpages btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Kembali</a>
         <div class="d-flex">
             <div id="mySidenav" class="sidenav">
                 <a href="#" class="sidebar-link py-3 px-4">Beranda</a>

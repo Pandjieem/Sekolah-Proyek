@@ -137,7 +137,7 @@ if ($cover->num_rows > 0) {
                                                 // Menampilkan setiap gambar dengan data yang relevan
                                 ?>
                                                 <article class="card-article">
-                                                    <div class="card-image-wrapper">
+                                                    <div class="card-image-wrapper" id="turu">
                                                         <img id="img-galery" src="<?= $imagePath ?>" alt="<?= htmlspecialchars($imageFile) ?>" class="card-img">
                                                     </div>
                                                     <div class="card-description-container">

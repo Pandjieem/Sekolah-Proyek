@@ -10,6 +10,7 @@ function openNav() {
   document.getElementById("gambarpembina").style.opacity = "0.5";
   document.getElementById("gambarkepalasekolah").style.opacity = "0.5";
   document.getElementById("gambarsekretaris").style.opacity = "0.5";
+  
 
   // Mengubah ikon tombol menjadi X
   document.getElementById("openBtn").innerHTML = "&times;";
