@@ -63,7 +63,7 @@ const slideTo = (index) => {
 
 // Tombol "Next"
 nextBtn.addEventListener("click", () => {
-  if (currentIndex < cards.length - 3) {
+  if (currentIndex < cards.length - 1) {
     slideTo(currentIndex + 1);
   } else {
     slideTo(0); // Kembali ke awal
@@ -87,6 +87,6 @@ slideTo(currentIndex);
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { 
       button.style.display = "block"; 
     } else { button.style.display = "none"; 
-      
+
     } 
   }; 
