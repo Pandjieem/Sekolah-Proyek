@@ -50,12 +50,6 @@ if ($cover->num_rows > 0) {
 <body>
     <div id="main">
         <span id="openBtn" style="font-size:40px;cursor:pointer;color: rgb(0, 0, 0);" onclick="openNav()">&#9776;</span>
-
-        <!-- Loading Animation -->
-        <div id="loading" class="loading">
-            <div class="loading-bar"></div>
-        </div>
-
         <div class="d-flex">
             <div id="mySidenav" class="sidenav">
                 <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
