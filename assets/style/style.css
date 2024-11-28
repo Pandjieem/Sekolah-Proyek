@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
 :root {
   --first-color: hsl(82, 60%, 28%);
   --title-color: hsl(0, 0%, 15%);
@@ -37,10 +38,10 @@ body {
   place-items: center;
   margin-inline: 1.5rem;
   padding-block: 5rem;
-  margin-left:-5px ; 
+  margin-left: -5px;
 }
 
-.arrow-btn{
+.arrow-btn {
   transform: translateY(-150px);
 }
 
@@ -78,7 +79,7 @@ body {
   display: block;
   font-size: var(--small-font-size);
   margin-bottom: .25rem;
-  
+
 }
 
 .card-title {
@@ -171,25 +172,25 @@ body {
     width: 250px;
     padding: 1rem;
   }
-  
-    .card-img{
-      position: relative;
-      width: 94%;    
-    }
+
+  .card-img {
+    position: relative;
+    width: 94%;
+  }
 }
 
 /* tablet */
 @media screen and (min-width: 968px) {
   .card-content-container {
     grid-template-columns: repeat(1, 1fr);
-    column-gap: 1.5rem;  
+    column-gap: 1.5rem;
   }
-  
+
   .sidenav {
     width: 100%;
   }
 
-  .img-galery{
+  .img-galery {
     height: auto;
   }
 
@@ -199,9 +200,9 @@ body {
     text-align: center;
     transition: opacity 0.3s ease-in-out;
   }
-  
 
-  
+
+
 }
 
 .card-description-container {
@@ -221,7 +222,7 @@ body {
   margin-inline: auto;
   opacity: 0;
   transition: opacity 0.8s 0.5s;
-  
+
   /* Peralihan lebih cepat */
 }
 
@@ -238,25 +239,28 @@ body {
 @media screen and (min-width: 1190px) {
   .card-content-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
-    gap: 2rem; /* Jarak antar kartu */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 kolom */
+    gap: 2rem;
+    /* Jarak antar kartu */
   }
 
   .card-article {
-    max-width: 100%; /* Kartu menyesuaikan dengan kolom */
+    max-width: 100%;
+    /* Kartu menyesuaikan dengan kolom */
   }
 }
 
-.text-center h2{
+.text-center h2 {
   position: relative;
   top: 500px;
 }
 
-.text-center-galery{
- position: relative;
- top: -1px;
- text-align: center;
- left: -1px;
+.text-center-galery {
+  position: relative;
+  top: -1px;
+  text-align: center;
+  left: -1px;
 }
 
 .profile-sekolah {
@@ -344,7 +348,7 @@ footer {
 /* gallery kegiatan */
 
 .galery {
-  background-color: #f9f9f9;  
+  background-color: #f9f9f9;
 }
 
 .text-center-galery {
@@ -393,15 +397,16 @@ footer {
 @media screen and (min-width: 600px) {
   .card-article {
     flex: 0 0 239px;
- 
+
   }
+
   @media screen and (max-width: 800px) {
     .card-article {
       flex: 0 0 239px;
-   
+
     }
 
-}
+  }
 
 }
 
@@ -448,7 +453,8 @@ footer {
 /* Atur untuk layar dengan minimal 1190px */
 @media screen and (min-width: 1190px) {
   .card-article {
-    flex: 0 0 32.33%; /* 3 gambar per layar */
+    flex: 0 0 32.33%;
+    /* 3 gambar per layar */
   }
 
 }
@@ -456,14 +462,14 @@ footer {
 .card-article img {
   width: 100%;
   height: 250px;
-  object-fit: cover; 
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container-karakter {
   width: 100%;
-  height: auto; 
+  height: auto;
   background-color: rgb(250, 250, 250);
   padding: 20px;
 }
@@ -471,54 +477,74 @@ footer {
 .center-h3 h2 {
   text-align: center;
   color: var(--title-color);
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .center-h3 {
   text-align: center;
-  margin-top: 1rem; 
+  margin-top: 1rem;
 }
 
 .p-karakter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; 
+  justify-content: center;
   gap: 60px;
-  position: relative; 
-  margin-top: 20px; 
+  position: relative;
+  margin-top: 20px;
 }
 
 .gambarr {
-  width: 20vw; 
-  height: auto; 
+  width: 20vw;
+  height: auto;
   border-radius: 8%;
 }
 
-.kalimat, .kepalasekolah, .pembina {
+.kalimat,
+.kepalasekolah,
+.pembina {
   position: relative;
-  text-align: center; 
-  margin-top: 20px; 
+  text-align: center;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
   .p-karakter {
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
   }
 
   .gambarr {
-    width: 80%; 
+    width: 80%;
   }
 
-  .kalimat, .kepalasekolah, .pembina {
-    left: 0; 
-    margin: 0 auto; 
+  .kalimat,
+  .kepalasekolah,
+  .pembina {
+    left: 0;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 480px) {
   .gambarr {
     width: 90%;
-    transform: translateX(20px); 
+    transform: translateX(20px);
   }
+}
+
+#backToTop {
+  background-color: #167e43;
+  /* Bootstrap primary color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#backToTop:hover {
+  background-color: #309342;
+  /* Darker shade on hover */
 }

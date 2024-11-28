@@ -63,7 +63,7 @@ const slideTo = (index) => {
 
 // Tombol "Next"
 nextBtn.addEventListener("click", () => {
-  if (currentIndex < cards.length - 3) {
+  if (currentIndex < cards.length - 1) {
     slideTo(currentIndex + 1);
   } else {
     slideTo(0); // Kembali ke awal
@@ -81,3 +81,12 @@ prevBtn.addEventListener("click", () => {
 
 // Atur ulang posisi awal
 slideTo(currentIndex);
+
+ window.onscroll = function() {
+   const button = document.getElementById("backToTop");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { 
+      button.style.display = "block"; 
+    } else { button.style.display = "none"; 
+
+    } 
+  }; 

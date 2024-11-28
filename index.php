@@ -48,7 +48,10 @@ if ($cover->num_rows > 0) {
 </style>
 
 <body>
+
+    <a href="#" id="backToTop" class="btn btn-primary" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000; border-radius: 20px;"><i class="fa-solid fa-arrow-up"></i></a>
     <div id="main">
+
         <span id="openBtn" style="font-size:40px;cursor:pointer;color: rgb(0, 0, 0);" onclick="openNav()">&#9776;</span>
         <div class="d-flex">
             <div id="mySidenav" class="sidenav">
