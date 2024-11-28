@@ -81,3 +81,12 @@ prevBtn.addEventListener("click", () => {
 
 // Atur ulang posisi awal
 slideTo(currentIndex);
+
+ window.onscroll = function() {
+   const button = document.getElementById("backToTop");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { 
+      button.style.display = "block"; 
+    } else { button.style.display = "none"; 
+      
+    } 
+  }; 
