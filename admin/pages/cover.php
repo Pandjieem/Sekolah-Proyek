@@ -4,7 +4,7 @@ require_once '../includes/db.php';
 
 $session = new Session();
 if (!$session->isLoggedIn()) {
-    $session->redirect('login.php');
+    $session->redirect('../login.php');
 }
 
 $db = new Database();

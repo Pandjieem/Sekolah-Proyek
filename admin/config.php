@@ -172,12 +172,6 @@ class Session {
     }
 }
 
-// Usage
-$session = new Session();
-if (!$session->isLoggedIn()) {
-    $session->redirect('login.php');
-}
-
 $db = new Database();
 $imageHandler = new ImageHandler($db);
 

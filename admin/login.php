@@ -1,37 +1,29 @@
 <?php
 session_start();
-include('includes/db.php');  // Pastikan file db.php sudah terhubung dengan benar
+include('includes/db.php'); // Koneksi ke database
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Query untuk mencari user berdasarkan username
+    // Query untuk mendapatkan user berdasarkan username
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Cek apakah username ditemukan dan password cocok
-    if ($user) {
-        // Langsung membandingkan password plaintext
-        if ($password == $user['password']) {
-            // Jika password cocok, login berhasil
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            header('Location: dashboard.php');
-            exit();
-        } else {
-            $error = "Invalid password.";  // Jika password salah
-        }
+    // Cek apakah user ditemukan dan verifikasi password
+    if ($user && password_verify($password, $user['password'])) {
+        // Jika password cocok
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        header('Location: dashboard.php');
+        exit();
     } else {
-        $error = "Username not found.";  // Jika username tidak ditemukan
+        $error = "Username atau password salah.";
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -104,5 +96,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBqkAPU8eoyhdf7p5ru4tZgQlJ6XbdwQFj8gC52yJbR9V6gD" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0pA+L4t8/+tWjVtusHxyOyyMl5ZFmVVk6pG6l1H9C8ht+5sd" crossorigin="anonymous"></script>
 </body>
-
 </html>
