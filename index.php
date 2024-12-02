@@ -257,5 +257,4 @@ if ($cover->num_rows > 0) {
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="script.js"></script>
 </body>
-
 </html>
