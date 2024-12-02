@@ -5,7 +5,7 @@ require_once '../includes/db.php';
 // Inisialisasi Session dan cek login
 $session = new Session();
 if (!$session->isLoggedIn()) {
-    $session->redirect('login.php');
+    $session->redirect('../login.php');
 }
 
 // Inisialisasi Database dan ImageHandler
