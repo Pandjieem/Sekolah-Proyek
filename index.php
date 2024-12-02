@@ -46,9 +46,7 @@ if ($cover->num_rows > 0) {
         height: 100vh;
     }
 </style>
-
 <body>
-
     <a href="#" id="backToTop" class="btn btn-primary" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000; border-radius: 20px;"><i class="fa-solid fa-arrow-up"></i></a>
     <div id="main">
 
@@ -202,15 +200,15 @@ if ($cover->num_rows > 0) {
                     </div>
                     <div class="p-karakter">
                         <div class="character-item pembina2">
-                            <img src="assets/cover/gambar.jpg" alt="Description 1" id="gambarpembina" class="gambarr">
+                            <img src="assets/img/tes.jpg" alt="Description 1" id="gambarpembina" class="gambarr">
                             <p class="kalimat">Pembina</p>
                         </div>
                         <div class="character-item kepalasekolah2">
-                            <img src="assets/cover/gambar.jpg" alt="Description 2" id="gambarkepalasekolah" class="gambarr">
+                            <img src="assets/img/tes.jpg" alt="Description 2" id="gambarkepalasekolah" class="gambarr">
                             <p class="kepalasekolah">Kepala Sekolah</p>
                         </div>
                         <div class="character-item sekretaris2">
-                            <img src="assets/cover/gambar.jpg" alt="Description 3" id="gambarsekretaris" class="gambarr">
+                            <img src="assets/img/tes.jpg" alt="Description 3" id="gambarsekretaris" class="gambarr">
                             <p class="pembina">Sekretaris</p>
                         </div>
                     </div>

@@ -407,6 +407,8 @@ footer {
 
 }
 
+
+
 .card-article img {
   width: 100%;
   height: auto;
@@ -536,7 +538,6 @@ footer {
 
 #backToTop {
   background-color: #167e43;
-  /* Bootstrap primary color */
   color: white;
   border: none;
   border-radius: 5px;
@@ -547,5 +548,4 @@ footer {
 
 #backToTop:hover {
   background-color: #309342;
-  /* Darker shade on hover */
 }
