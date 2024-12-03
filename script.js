@@ -63,7 +63,7 @@ const slideTo = (index) => {
 
 // Tombol "Next"
 nextBtn.addEventListener("click", () => {
-  if (currentIndex < cards.length - 1 ) {
+  if (currentIndex < cards.length - 3 ) {
     slideTo(currentIndex + 1);
   } else {
     slideTo(0); // Kembali ke awal
