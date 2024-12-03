@@ -1,4 +1,7 @@
 <?php
+require_once 'admin/config.php';
+require_once 'admin/includes/db.php';
+
 // Koneksi ke database
 $conn = new mysqli("localhost", "root", "", "user_db");
 if ($conn->connect_error) {
@@ -34,18 +37,9 @@ if ($cover->num_rows > 0) {
     .cover-section {
         background-image: url('<?php echo $background_image; ?>');
         /* Menggunakan gambar dari database */
-        background-size: cover;
-        background-position: center;
-        height: 300px;
-        /* Sesuaikan tinggi sesuai kebutuhan */
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 100vh;
     }
 </style>
+
 <body>
     <a href="#" id="backToTop" class="btn btn-primary" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000; border-radius: 20px;"><i class="fa-solid fa-arrow-up"></i></a>
     <div id="main">
@@ -55,7 +49,7 @@ if ($cover->num_rows > 0) {
             <div id="mySidenav" class="sidenav">
                 <a href="#" class="sidebar-link py-3 px-4">Beranda</a>
                 <a href="#profile-sekolah" class="sidebar-link py-3 px-4">Profil Sekolah</a>
-                <a href="#galery-kegiatan" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
+                <a href="#tidur" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
                 <a href="#organisasi" class="sidebar-link py-3 px-4">Organisasi</a>
             </div>
 
@@ -185,6 +179,8 @@ if ($cover->num_rows > 0) {
                             <div class="text-justify">
                                 <ol class="lead">
                                     <li>Raudhatul Athfal (RA)</li>
+
+
                                     <li>Madrasah Ibtidaiyah (MI)</li>
                                     <li>Madrasah Tsanawiyah (MTs)</li>
                                     <li>Madrasah Aliyah (MA)</li>
@@ -194,25 +190,51 @@ if ($cover->num_rows > 0) {
                     </div>
                 </section>
 
+                <?php
+                $pembina = $imageHandler->getOrgan(1);
+                $pengurus = $imageHandler->getOrgan(2);
+                $pengawas = $imageHandler->getOrgan(3);
+                ?>
+
                 <div class="container-karakter" id="opacity-dashboard">
                     <div class="center-h3">
                         <h2>Organ Yayasan</h2>
                     </div>
                     <div class="p-karakter">
                         <div class="character-item pembina2">
-                            <img src="assets/img/tes.jpg" alt="Description 1" id="gambarpembina" class="gambarr">
-                            <p class="kalimat">Pembina</p>
+                            <img src="<?= htmlspecialchars($pembina['image_path'] ?? 'assets/organ/default.jpg') ?>"
+                                alt="Pembina"
+                                id="gambarpembina"
+                                class="gambarr">
+                            <p class="kalimat"><?= htmlspecialchars($pembina['title'] ?? 'Pembina') ?></p>
                         </div>
                         <div class="character-item kepalasekolah2">
-                            <img src="assets/img/tes.jpg" alt="Description 2" id="gambarkepalasekolah" class="gambarr">
-                            <p class="kepalasekolah">Kepala Sekolah</p>
+                            <img src="<?= htmlspecialchars($pengurus['image_path'] ?? 'assets/organ/default.jpg') ?>"
+                                alt="Pengurus"
+                                id="gambarkepalasekolah"
+                                class="gambarr">
+                            <p class="kepalasekolah"><?= htmlspecialchars($pengurus['title'] ?? 'Pengurus') ?></p>
                         </div>
                         <div class="character-item sekretaris2">
-                            <img src="assets/img/tes.jpg" alt="Description 3" id="gambarsekretaris" class="gambarr">
-                            <p class="pembina">Sekretaris</p>
+                            <img src="<?= htmlspecialchars($pengawas['image_path'] ?? 'assets/organ/default.jpg') ?>"
+                                alt="Pengawas"
+                                id="gambarsekretaris"
+                                class="gambarr">
+                            <p class="pembina"><?= htmlspecialchars($pengawas['title'] ?? 'Pengawas') ?></p>
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Organisasi Section -->
+                <section id="organisasi" class="profile-sekolah py-5">
+                    <div class="container">
+                        <h2 class="text-center mb-4">Organisasi</h2>
+                        <div class="row">
+                            
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Footer -->
                 <footer class="footer bg-black text-center text-md-start" id="footer">

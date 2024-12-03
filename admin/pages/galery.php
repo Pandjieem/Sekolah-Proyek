@@ -12,7 +12,6 @@ if (!$session->isLoggedIn()) {
 $db = new Database();
 $imageHandler = new ImageHandler($db);
 
-
 // Get all images
 $images = $imageHandler->getAllImages();
 ?>
