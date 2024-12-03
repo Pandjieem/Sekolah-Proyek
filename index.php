@@ -57,7 +57,8 @@ if ($cover->num_rows > 0) {
             <div class="content flex-grow-1">
                 <div class="cover-section text-center">
                     <div class="container">
-                        <h1 class="display-4 font-weight-bold">YPS Miftahul Falah Diski</h1>
+                        <img src="logo.png" alt="" style="margin-top: -120px; ;width: 200px">
+                        <h1 class="display-4 font-weight-bold mt-2" style="">YPS Miftahul Falah Diski</h1>
                         <p class="lead">Menjadi pusat pendidikan Anak Cerdas & Soleh</p>
                         <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">TENTANG KAMI</a>
                     </div>
@@ -179,8 +180,6 @@ if ($cover->num_rows > 0) {
                             <div class="text-justify">
                                 <ol class="lead">
                                     <li>Raudhatul Athfal (RA)</li>
-
-
                                     <li>Madrasah Ibtidaiyah (MI)</li>
                                     <li>Madrasah Tsanawiyah (MTs)</li>
                                     <li>Madrasah Aliyah (MA)</li>
@@ -226,12 +225,12 @@ if ($cover->num_rows > 0) {
                 </div>
 
 
-                <!-- Organisasi Section -->
-                <section id="organisasi" class="profile-sekolah py-5">
+                <!-- Struktur Section -->
+                <section id="struktur" class="profile-sekolah py-5">
                     <div class="container">
-                        <h2 class="text-center mb-4">Organisasi</h2>
+                        <h2 class="text-center mb-4">Struktur</h2>
                         <div class="row">
-                            
+
                         </div>
                     </div>
                 </section>
@@ -279,4 +278,5 @@ if ($cover->num_rows > 0) {
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="script.js"></script>
 </body>
+
 </html>
