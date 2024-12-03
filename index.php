@@ -230,6 +230,71 @@ if ($cover->num_rows > 0) {
                     <div class="container">
                         <h2 class="text-center mb-4">Struktur</h2>
                         <div class="row">
+                            <div class="structure">
+                                <!-- Ketua Pembina -->
+                                <div class="node">KETUA PEMBINA</div>
+                                <div class="line vertical long"></div>
+
+                                <!-- Ketua/Anggota Pengawas & Ketua Pengurus -->
+                                <div class="node">KETUA/ANGGOTA PENGAWAS</div>
+                                <div class="line horizontal"></div>
+                                <div class="node">KETUA PENGURUS</div>
+                                <div class="line vertical long"></div>
+
+                                <!-- Bendahara dan Sekretaris -->
+                                <div class="horizontal-container">
+                                    <div class="vertical-container">
+                                        <div class="node">BENDAHARA</div>
+                                        <div class="line vertical short"></div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node">SEKRETARIS / Kepala Sekretariat Yayasan</div>
+                                        <div class="line vertical short"></div>
+                                        <div class="horizontal-container">
+                                            <div class="node">Kabag Adm & Keuangan</div>
+                                            <div class="node">Kabag Umum dan SDM</div>
+                                            <div class="node">Kabag Perlengkapan & Pengelolaan Sarana</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tiga Koordinator -->
+                                <div class="line vertical long"></div>
+                                <div class="horizontal-container">
+                                    <div class="vertical-container">
+                                        <div class="node">Koordinator Bidang Pendidikan dan Sosial</div>
+                                        <div class="line vertical short"></div>
+                                        <div class="vertical-container">
+                                            <div class="node">PAUD</div>
+                                            <div class="node">RA</div>
+                                            <div class="node">MIS</div>
+                                            <div class="node">MTS</div>
+                                            <div class="node">MAS</div>
+                                        </div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node">Koordinator Bidang Kemasyarakatan dan Kelembagaan</div>
+                                        <div class="node" style="text-align: left;">
+                                            a. Melestarikan Lingk. Hidup Madrasah dan sekitarnya<br>
+                                            b. Kegiatan Olahraga dan Pramuka<br>
+                                            c. Kegiatan pelatihan, penelitian, survey, fasilitasi<br>
+                                            d. Pendampingan, pemberdayaan masyarakat dan desa<br>
+                                            e. Kerjasama kelembagaan pengembangan kegiatan Yayasan
+                                        </div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node">Koordinator Bidang Keagamaan</div>
+                                        <div class="node" style="text-align: left;">
+                                            a. Ceramah Keagamaan<br>
+                                            b. PHBI<br>
+                                            c. Pelaksana Qurban<br>
+                                            d. Mengelola ZIS Pembangunan madrasah<br>
+                                            e. Pusat Pendidikan Anak Cerdas & Soleh<br>
+                                            f. Studi Banding ke Lembaga Pendidikan Pesantren, Madrasah dan Sekolah Umum lainnya
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
