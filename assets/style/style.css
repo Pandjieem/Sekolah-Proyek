@@ -390,6 +390,11 @@ footer {
   transition: opacity 0.3s ease-in-out;
 }
 
+@media screen and (min-width: 600px) {
+
+  
+}
+
 /* ipad */
 @media screen and (min-width: 600px) {
   .card-article {
@@ -549,3 +554,28 @@ footer {
 #backToTop:hover {
   background-color: #309342;
 }
+
+/* Animasi fade-in untuk cover-section */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+
+.cover-section {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Tambahkan animasi fade-in */
+  animation: fadeIn 2s ease-in;
+}
+

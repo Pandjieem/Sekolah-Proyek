@@ -38,7 +38,8 @@ if (!$session->isLoggedIn()) {
                         <p class="lead">Memodifikasi Halaman Utama</p>
                         <a href="logout.php" class="btn btn-lg font-weight-bold logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         <a href="pages/cover.php" class="btn btn-lg font-weight-bold">Ganti Cover</a>
-                        <a href="pages/galery.php" class="btn btn-lg font-weight-bold">Modifikasi galeri</a>
+                        <a href="pages/galery.php" class="btn btn-lg font-weight-bold">Modifikasi Galeri</a>
+                        <a href="pages/organ.php" class="btn btn-lg font-weight-bold">Modifikasi Organ</a>
                     </div>
                 </div>
             </div>

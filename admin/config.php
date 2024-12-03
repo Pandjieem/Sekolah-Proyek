@@ -34,7 +34,8 @@ class ImageHandler {
     public function __construct(
         private Database $db,
         private string $coverPath = '../../assets/cover/',
-        private string $imagePath = '../../assets/img/'
+        private string $imagePath = '../../assets/img/',
+        private string $organPath = '../../assets/organ/'
     ) {
         $this->checkDirectories();
     }
@@ -144,6 +145,35 @@ class ImageHandler {
         
         return (bool)$this->db->query("DELETE FROM images WHERE id=$imageId");
     }
+
+    public function updateOrgan(array $post, array $files, int $organId): bool {
+        $title = htmlspecialchars($post['title']);
+        $image = $files['organ_image']['name'];
+        $target = $this->organPath . basename($image);
+        
+        if ($this->uploadImage($files['organ_image'], $target)) {
+            $sql = "SELECT * FROM organ WHERE id = $organId";
+            $result = $this->db->query($sql);
+            
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                if (file_exists($row['image_path'])) {
+                    unlink($row['image_path']);
+                }
+                $sql = "UPDATE organ SET title='$title', image_path='$target' WHERE id=$organId";
+            } else {
+                $sql = "INSERT INTO organ (id, title, image_path) VALUES ($organId, '$title', '$target')";
+            }
+            
+            return (bool)$this->db->query($sql);
+        }
+        return false;
+    }
+    
+    public function getOrgan(int $organId): ?array {
+        $result = $this->db->query("SELECT * FROM organ WHERE id = $organId");
+        return $result->fetch_assoc();
+    }    
     
     public function getAllImages(): mysqli_result|bool {
         return $this->db->query("SELECT * FROM images");
@@ -180,14 +210,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         if (isset($_POST['update_cover'])) {
             if ($imageHandler->updateCover($_POST, $_FILES)) {
-                $session->redirect('../../index.php');
+                $_SESSION['success_message'] = "Gambar berhasil disimpan!";
             } else {
                 $error = "Gagal mengupdate cover image";
             }
         } elseif (isset($_POST['add_image'])) {
             if ($imageHandler->addImage($_POST, $_FILES)) {
                 $_SESSION['success_message'] = "Gambar berhasil ditambahkan!";
-                $session->redirect($_SERVER['PHP_SELF']);
             } else {
                 $error = "Gagal menambah image";
             }
@@ -195,7 +224,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageId = (int)$_POST['image_id'];
             if ($imageHandler->updateImage($imageId, $_POST, $_FILES)) {
                 $_SESSION['success_message'] = "Gambar berhasil diperbarui!";
-                $session->redirect($_SERVER['PHP_SELF']);
             } else {
                 $error = "Gagal mengubah image";
             }
@@ -210,7 +238,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['delete'])) {
     if ($imageHandler->deleteImage((int)$_GET['delete'])) {
         $_SESSION['success_message'] = "Gambar berhasil dihapus!";
-        $session->redirect($_SERVER['PHP_SELF']);
     } else {
         $error = "Gagal menghapus image";
     }
