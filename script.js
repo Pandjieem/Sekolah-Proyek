@@ -38,9 +38,6 @@ function closeNav() {
   document.getElementById("gambarsekretaris").style.opacity = "1";
 }
 
-
-
-
 const cardContentContainer = document.querySelector(".card-content-container");
 const cards = document.querySelectorAll(".card-article");
 const prevBtn = document.querySelector("#prevBtn");
@@ -63,7 +60,7 @@ const slideTo = (index) => {
 
 // Tombol "Next"
 nextBtn.addEventListener("click", () => {
-  if (currentIndex < cards.length - 3) {
+  if (currentIndex < cards.length - 1 ) {
     slideTo(currentIndex + 1);
   } else {
     slideTo(0); // Kembali ke awal
