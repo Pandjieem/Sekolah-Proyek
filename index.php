@@ -233,9 +233,7 @@ if ($cover->num_rows > 0) {
                         </div>
                     </div>
                 </section>
-
-
-
+                
                 <!-- Footer -->
                 <footer class="footer bg-black text-center text-md-start" id="footer">
                     <div class="container py-4">
