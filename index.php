@@ -58,7 +58,7 @@ if ($cover->num_rows > 0) {
                 <div class="cover-section text-center">
                     <div class="container">
                         <img src="logo.png" alt="" style="margin-top: -120px; ;width: 200px">
-                        <h1 class="display-4 font-weight-bold mt-2" style="">YPS Miftahul Falah Diski</h1>
+                        <h1 class="display-4 font-weight-bold mt-2"  >YPS Miftahul Falah Diski</h1>
                         <p class="lead">Menjadi pusat pendidikan Anak Cerdas & Soleh</p>
                         <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">TENTANG KAMI</a>
                     </div>
