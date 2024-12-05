@@ -224,12 +224,77 @@ if ($cover->num_rows > 0) {
                     </div>
                 </div>
 
-                <!-- Struktur Section -->
-                <section id="struktur" class="profile-sekolah py-5">
+                  <!-- Struktur Section -->
+                  <section id="struktur" class="profile-sekolah py-5">
                     <div class="container">
                         <h2 class="text-center mb-4">Struktur</h2>
                         <div class="row">
+                            <div class="structure">
+                                <!-- Ketua Pembina -->
+                                <div class="node">KETUA PEMBINA</div>
+                                <div class="line long" style="transform:translate(0px, 25px);"></div>
                             
+                                <!-- Ketua/Anggota Pengawas & Ketua Pengurus -->
+                                <div class="line short horizontal" style="transform:translate(-10px, -110px);"></div>
+                                <div class="node ketang">KETUA/ANGGOTA PENGAWAS</div>
+                                <div class="node">KETUA PENGURUS</div>
+                                <div class="line horizontal long" style="transform:translate(-20px, 0px);"></div>
+
+                                <!-- Bendahara dan Sekretaris -->
+                                <div class="horizontal-container">
+                                    <div class="vertical-container">
+                                        <div class="node">BENDAHARA</div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node seke">SEKRETARIS / Kepala Sekretariat Yayasan</div>
+                                        <div class="line short" style="transform:translate(280px, 20px); height:100px;"></div>
+                                        <div class="line short horizontal" style="transform:translate(-120px, -210px); height:450px;"></div>
+                                        <div class="horizontal-container">
+                                            <div class="node trio">Kabag Adm & Keuangan</div>
+                                            <div class="node trio">Kabag Umum dan SDM</div>
+                                            <div class="node trio">Kabag Perlengkapan & Pengelolaan Sarana</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tiga Koordinator -->
+                                <div class="line horizontal long" style="transform:translate(-10px, 0px); height:800px;"></div>
+                                <div class="horizontal-container">
+                                    <div class="vertical-container">
+                                        <div class="node">Koordinator Bidang Pendidikan dan Sosial</div>
+                                        <div class="line long" style="transform:translate(0px, 20px); height:380px;"></div>
+                                        <div class="vertical-container">
+                                            <div class="node">PAUD</div>
+                                            <div class="node">RA</div>
+                                            <div class="node">MIS</div>
+                                            <div class="node">MTS</div>
+                                            <div class="node">MAS</div>
+                                        </div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node kordinator">Koordinator Bidang Kemasyarakatan dan Kelembagaan</div>
+                                        <div class="node para" style="text-align: left;">
+                                            a. Melestarikan Lingk. Hidup Madrasah dan sekitarnya<br>
+                                            b. Kegiatan Olahraga dan Pramuka<br>
+                                            c. Kegiatan pelatihan, penelitian, survey, fasilitasi<br>
+                                            d. Pendampingan, pemberdayaan masyarakat dan desa<br>
+                                            e. Kerjasama kelembagaan pengembangan kegiatan Yayasan
+                                        </div>
+                                    </div>
+                                    <div class="vertical-container">
+                                        <div class="node kobi">Koordinator Bidang Keagamaan</div>
+                                        <div class="line short" style="transform:translate(70px, 20px);"></div>
+                                        <div class="node para para2" style="text-align: left;">
+                                            a. Ceramah Keagamaan<br>
+                                            b. PHBI<br>
+                                            c. Pelaksana Qurban<br>
+                                            d. Mengelola ZIS Pembangunan madrasah<br>
+                                            e. Pusat Pendidikan Anak Cerdas & Soleh<br>
+                                            f. Studi Banding ke Lembaga Pendidikan Pesantren, Madrasah<br> dan Sekolah Umum lainnya
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
