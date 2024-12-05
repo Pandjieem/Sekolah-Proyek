@@ -57,7 +57,7 @@ if ($cover->num_rows > 0) {
             <div class="content flex-grow-1">
                 <div class="cover-section text-center">
                     <div class="container">
-                        <img src="logo.png" alt="" style="margin-top: -120px; ;width: 200px">
+                        <img src="logo.png" alt="" style="margin-top: -120px; ;width: 170px" class="res">
                         <h1 class="display-4 font-weight-bold mt-2" style="">YPS Miftahul Falah Diski</h1>
                         <p class="lead">Menjadi pusat pendidikan Anak Cerdas & Soleh</p>
                         <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">TENTANG KAMI</a>
@@ -227,15 +227,16 @@ if ($cover->num_rows > 0) {
                   <!-- Struktur Section -->
                   <section id="struktur" class="profile-sekolah py-5">
                     <div class="container">
-                        <h2 class="text-center mb-4">Struktur</h2>
+                        <h2 class="text-center mb-4">Struktur Yayasan</h2>
                         <div class="row">
-                            <div class="structure">
+                        <img class="gambars" src="assets/cover/struktur/struktur.png">
+                            <div class="structure" id="str">
                                 <!-- Ketua Pembina -->
                                 <div class="node">KETUA PEMBINA</div>
                                 <div class="line long" style="transform:translate(0px, 25px);"></div>
-                            
+
                                 <!-- Ketua/Anggota Pengawas & Ketua Pengurus -->
-                                <div class="line short horizontal" style="transform:translate(-10px, -110px);"></div>
+                                <div class="line short horizontal" style="transform:translate(40px, -60px);"></div>
                                 <div class="node ketang">KETUA/ANGGOTA PENGAWAS</div>
                                 <div class="node">KETUA PENGURUS</div>
                                 <div class="line horizontal long" style="transform:translate(-20px, 0px);"></div>

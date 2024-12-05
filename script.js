@@ -10,7 +10,7 @@ function openNav() {
   document.getElementById("gambarpembina").style.opacity = "0.5";
   document.getElementById("gambarkepalasekolah").style.opacity = "0.5";
   document.getElementById("gambarsekretaris").style.opacity = "0.5";
-  
+
 
   // Mengubah ikon tombol menjadi X
   document.getElementById("openBtn").innerHTML = "&times;";
@@ -91,11 +91,45 @@ window.onload = () => slideTo(currentIndex);
 window.onresize = () => slideTo(currentIndex);
 
 // Mengatur jumlah kartu yang ditampilkan ketika menggulir
-window.onscroll = function() {
-   const button = document.getElementById("backToTop");
-   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-     button.style.display = "block";
-   } else {
-     button.style.display = "none";
-   }
+window.onscroll = function () {
+  const button = document.getElementById("backToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
 };
+
+// Fungsi untuk mengatur visibilitas elemen dengan class "gambars" berdasarkan ukuran layar
+function updateVisibility() {
+  const elements = document.querySelectorAll('.gambars');
+  const structure = document.getElementById('struktur');
+  const str = document.getElementById('str');
+  const screenWidth = window.innerWidth;
+
+  // Mengatur visibility elemen dengan class 'gambars'
+  elements.forEach(element => {
+    if (screenWidth > 834 ) { // Ukuran layar laptop atau lebih besar
+      element.style.visibility = 'hidden';
+      element.style.display = 'none';
+    } else { // Ukuran layar HP atau lebih kecil
+      element.style.visibility = 'visible';
+    }
+  });
+
+  // Mengatur visibility elemen dengan id 'struktur'
+  if (structure) { // Pastikan elemen dengan id 'struktur' ada
+    if (screenWidth > 834) { // Ukuran layar laptop atau lebih besar
+      structure.style.visibility = 'visible';
+    } else { // Ukuran layar HP atau lebih kecil
+      str.style.display = 'none';
+    }
+  }
+}
+
+// Jalankan fungsi saat halaman dimuat
+updateVisibility();
+
+// Tambahkan event listener untuk memperbarui visibilitas saat ukuran layar berubah
+window.addEventListener('resize', updateVisibility);
+
