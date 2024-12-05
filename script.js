@@ -60,3 +60,24 @@ window.onscroll = function() {
      button.style.display = "none";
    }
 };
+
+// Fungsi untuk mengatur visibilitas elemen dengan class "gambars" berdasarkan ukuran layar
+function updateVisibility() {
+  const elements = document.querySelectorAll('.gambars');
+  const screenWidth = window.innerWidth;
+
+  elements.forEach(element => {
+      if (screenWidth > 767) { // Ukuran layar laptop atau lebih besar
+          element.style.visibility = 'hidden';
+      } else { // Ukuran layar HP atau lebih kecil
+          element.style.visibility = 'visible';
+      }
+  });
+}
+
+// Jalankan fungsi saat halaman dimuat
+updateVisibility();
+
+// Tambahkan event listener untuk memperbarui visibilitas saat ukuran layar berubah
+window.addEventListener('resize', updateVisibility);
+
