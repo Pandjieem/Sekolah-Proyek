@@ -51,6 +51,7 @@ if ($cover->num_rows > 0) {
                 <a href="#profile-sekolah" class="sidebar-link py-3 px-4">Profil Sekolah</a>
                 <a href="#tidur" class="sidebar-link py-3 px-4">Galeri Kegiatan</a>
                 <a href="#organisasi" class="sidebar-link py-3 px-4">Organisasi</a>
+                <a href="#struktur" class="sidebar-link py-3 px-4">Struktur Yayasan</a>
             </div>
 
             <!-- Content Area -->
@@ -58,7 +59,7 @@ if ($cover->num_rows > 0) {
                 <div class="cover-section text-center">
                     <div class="container">
                         <img src="logo.png" alt="" style="margin-top: -120px; ;width: 170px" class="res">
-                        <h1 class="display-4 font-weight-bold mt-2" style="">YPS Miftahul Falah Diski</h1>
+                        <h1 class="display-4 font-weight-bold mt-2 naik" >YPS Miftahul Falah Diski</h1>
                         <p class="lead">Menjadi pusat pendidikan Anak Cerdas & Soleh</p>
                         <a href="#profile-sekolah" class="btn btn-lg font-weight-bold">TENTANG KAMI</a>
                     </div>
@@ -236,7 +237,7 @@ if ($cover->num_rows > 0) {
                                 <div class="line long" style="transform:translate(0px, 25px);"></div>
 
                                 <!-- Ketua/Anggota Pengawas & Ketua Pengurus -->
-                                <div class="line short horizontal" style="transform:translate(40px, -60px);"></div>
+                                <div class="line short horizontal" style="transform:translate(-10px, -110px);"></div>
                                 <div class="node ketang">KETUA/ANGGOTA PENGAWAS</div>
                                 <div class="node">KETUA PENGURUS</div>
                                 <div class="line horizontal long" style="transform:translate(-20px, 0px);"></div>
@@ -342,6 +343,8 @@ if ($cover->num_rows > 0) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="script.js"></script>
+        <script src="scroll.js"></script>
+        <script src="scr.js"></script>
 </body>
 
 </html>
