@@ -133,3 +133,38 @@ updateVisibility();
 // Tambahkan event listener untuk memperbarui visibilitas saat ukuran layar berubah
 window.addEventListener('resize', updateVisibility);
 
+
+// Fungsi untuk memeriksa apakah elemen terlihat di viewport
+const isElementInViewport = (el) => {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+};
+
+// Fungsi untuk menambahkan kelas 'visible' pada elemen yang terlihat
+const revealElements = () => {
+  const scrollUpElements = document.querySelectorAll('.scroll-up');
+  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+  scrollUpElements.forEach((el) => {
+    if (isElementInViewport(el)) {
+      el.classList.add('visible');
+    }
+  });
+
+  scrollRevealElements.forEach((el) => {
+    if (isElementInViewport(el)) {
+      el.classList.add('visible');
+    }
+  });
+};  
+
+// Jalankan fungsi saat halaman di-scroll
+window.addEventListener('scroll', revealElements);
+
+// Jalankan fungsi saat halaman dimuat
+window.onload = revealElements;
