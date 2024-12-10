@@ -442,3 +442,7 @@ h2 {
   background-color: #f8d7da;
   border-color: #f5c6cb;
 }
+
+.cover-section .btn{
+  margin: 10px;
+}
